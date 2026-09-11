@@ -272,10 +272,20 @@ A ideia é que o estudante não apenas leia o conteúdo, mas também:
 * 🏅 Ranking e sistema de pontuação
 
 ---
+## 👨‍🎓 Identificação
 
-## 👨‍💻 Desenvolvimento
+**Aluno:** Davi Raposo Dino de Lima
+**Turma:** 3º A
+**Professor Docente:** Eduardo Hernandes
 
-Projeto desenvolvido como uma plataforma educacional voltada para a revisão e preparação dos alunos do **3º Ano A**.
+---
+
+## 📚 Projeto
+
+**Revisão 3º Ano A** é uma plataforma web educacional desenvolvida individualmente para auxiliar nos estudos e na preparação para as avaliações do 3º ano.
+
+A plataforma reúne conteúdos de revisão, questões, correção automática e acompanhamento de desempenho em um único ambiente.
+
 
 ---
 
