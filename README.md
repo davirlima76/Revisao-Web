@@ -255,11 +255,19 @@ A ideia é que o estudante não apenas leia o conteúdo, mas também:
 > **Estude → Pratique → Receba feedback → Acompanhe seu desempenho → Melhore**
 
 ---
-## 👨‍🎓 Identificação
+## 👨‍🎓 Aluno
 
-**Aluno:** Davi Raposo Dino de Lima
-**Turma:** 3º A
-**Professor Docente:** Eduardo Hernandes
+**Davi Raposo Dino de Lima**
+
+## 🏫 Turma
+
+**3º A**
+
+## 👨‍🏫 Professor Docente
+
+**[Eduardo Hernandes](https://github.com/eduhernandes)**
+
+
 
 ---
 
