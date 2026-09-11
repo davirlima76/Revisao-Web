@@ -255,23 +255,6 @@ A ideia é que o estudante não apenas leia o conteúdo, mas também:
 > **Estude → Pratique → Receba feedback → Acompanhe seu desempenho → Melhore**
 
 ---
-
-## 🔮 Possíveis melhorias futuras
-
-* 🔐 Sistema de login
-* 👤 Perfil do estudante
-* ☁️ Banco de dados
-* 🏆 Sistema de conquistas
-* 🔥 Sequência de dias estudados
-* 📈 Gráficos de desempenho
-* 🎯 Metas de estudo
-* 🧠 Sistema de revisão adaptativa
-* 📚 Mais questões por disciplina
-* 🤖 Recursos de Inteligência Artificial
-* 📱 Transformação em PWA
-* 🏅 Ranking e sistema de pontuação
-
----
 ## 👨‍🎓 Identificação
 
 **Aluno:** Davi Raposo Dino de Lima
@@ -286,12 +269,6 @@ A ideia é que o estudante não apenas leia o conteúdo, mas também:
 
 A plataforma reúne conteúdos de revisão, questões, correção automática e acompanhamento de desempenho em um único ambiente.
 
-
----
-
-## 📄 Licença
-
-Este projeto foi desenvolvido para fins **educacionais e acadêmicos**.
 
 ---
 
