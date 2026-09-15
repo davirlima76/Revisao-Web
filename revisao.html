@@ -1,0 +1,2964 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Revisão | 3º Ano A</title>
+
+
+    <!-- =====================================================
+         FONTES
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="reset.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="components.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- =====================================================
+         ESTILO DA PÁGINA
+         ===================================================== -->
+
+    <style>
+
+        /* =================================================
+           CONTAINER
+           ================================================= */
+
+        .revision-container {
+
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding-top: 28px;
+            padding-bottom: 50px;
+
+        }
+
+
+        /* =================================================
+           CABEÇALHO
+           ================================================= */
+
+        .revision-header {
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .revision-header-content {
+
+            min-width: 0;
+
+        }
+
+
+        .back-link {
+
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-bottom: 15px;
+
+            color: var(--color-text-muted);
+
+            font-size: 12px;
+            font-weight: 600;
+
+            text-decoration: none;
+
+            transition:
+                color var(--transition-fast);
+
+        }
+
+
+        .back-link:hover {
+
+            color: var(--color-primary);
+
+        }
+
+
+        .revision-label {
+
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 10px;
+
+            color: var(--color-primary);
+
+            font-size: 12px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.08em;
+
+        }
+
+
+        .revision-title {
+
+            margin: 0 0 8px;
+
+            color: var(--color-text);
+
+            font-size: clamp(28px, 4vw, 42px);
+
+            font-weight: 800;
+
+            line-height: 1.15;
+
+        }
+
+
+        .revision-description {
+
+            max-width: 700px;
+
+            color: var(--color-text-muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =================================================
+           INDICADOR
+           ================================================= */
+
+        .revision-progress-box {
+
+            flex-shrink: 0;
+
+            width: 190px;
+
+            padding: 18px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-lg);
+
+            background: var(--color-surface);
+
+            box-shadow: var(--shadow-sm);
+
+        }
+
+
+        .revision-progress-top {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .revision-progress-top span:first-child {
+
+            color: var(--color-text-muted);
+
+            font-size: 11px;
+            font-weight: 600;
+
+        }
+
+
+        .revision-progress-number {
+
+            color: var(--color-primary);
+
+            font-size: 13px;
+            font-weight: 800;
+
+        }
+
+
+        .revision-progress-track {
+
+            width: 100%;
+            height: 7px;
+
+            overflow: hidden;
+
+            border-radius: 999px;
+
+            background: var(--color-border);
+
+        }
+
+
+        .revision-progress-fill {
+
+            width: 0;
+            height: 100%;
+
+            border-radius: inherit;
+
+            background: var(--color-primary);
+
+            transition:
+                width 400ms ease;
+
+        }
+
+
+        /* =================================================
+           SELEÇÃO DE TÓPICOS
+           ================================================= */
+
+        .topic-selector {
+
+            display: flex;
+            gap: 9px;
+
+            margin-bottom: 25px;
+
+            overflow-x: auto;
+
+            padding-bottom: 5px;
+
+        }
+
+
+        .topic-selector button {
+
+            flex-shrink: 0;
+
+            padding: 9px 13px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: 999px;
+
+            background: var(--color-surface);
+
+            color: var(--color-text-muted);
+
+            font-family: inherit;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                background var(--transition-fast),
+                color var(--transition-fast),
+                border-color var(--transition-fast);
+
+        }
+
+
+        .topic-selector button:hover {
+
+            border-color: var(--color-primary);
+
+            color: var(--color-primary);
+
+        }
+
+
+        .topic-selector button.active {
+
+            border-color: var(--color-primary);
+
+            background: var(--color-primary);
+
+            color: #ffffff;
+
+        }
+
+
+        /* =================================================
+           CARD PRINCIPAL
+           ================================================= */
+
+        .lesson-card {
+
+            overflow: hidden;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-xl);
+
+            background: var(--color-surface);
+
+            box-shadow: var(--shadow-md);
+
+        }
+
+
+        .lesson-card-header {
+
+            padding: 28px 30px;
+
+            border-bottom: 1px solid var(--color-border);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--color-primary-light),
+                    var(--color-surface)
+                );
+
+        }
+
+
+        .lesson-number {
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 34px;
+            height: 34px;
+
+            margin-bottom: 14px;
+
+            border-radius: 10px;
+
+            background: var(--color-primary);
+
+            color: #ffffff;
+
+            font-size: 13px;
+            font-weight: 800;
+
+        }
+
+
+        .lesson-title {
+
+            margin: 0 0 7px;
+
+            color: var(--color-text);
+
+            font-size: 24px;
+            font-weight: 800;
+
+        }
+
+
+        .lesson-subtitle {
+
+            color: var(--color-text-muted);
+
+            font-size: 13px;
+
+        }
+
+
+        .lesson-body {
+
+            padding: 30px;
+
+        }
+
+
+        /* =================================================
+           SEÇÕES DA AULA
+           ================================================= */
+
+        .study-section {
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .study-section:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .study-section-title {
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 12px;
+
+            color: var(--color-text);
+
+            font-size: 16px;
+            font-weight: 800;
+
+        }
+
+
+        .study-section-title i {
+
+            color: var(--color-primary);
+
+        }
+
+
+        .study-text {
+
+            color: var(--color-text-muted);
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =================================================
+           DESTAQUE
+           ================================================= */
+
+        .study-highlight {
+
+            padding: 18px 20px;
+
+            border-left: 4px solid var(--color-primary);
+
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+
+            background: var(--color-primary-light);
+
+            color: var(--color-text);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =================================================
+           FÓRMULA
+           ================================================= */
+
+        .formula-box {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 100px;
+
+            margin-top: 15px;
+
+            padding: 25px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-md);
+
+            background: var(--color-background);
+
+            color: var(--color-text);
+
+            font-size: 23px;
+            font-weight: 700;
+
+            text-align: center;
+
+        }
+
+
+        /* =================================================
+           EXEMPLO
+           ================================================= */
+
+        .example-box {
+
+            padding: 20px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-md);
+
+            background: var(--color-background);
+
+        }
+
+
+        .example-label {
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 12px;
+
+            color: var(--color-primary);
+
+            font-size: 12px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.06em;
+
+        }
+
+
+        .example-box p {
+
+            margin-bottom: 8px;
+
+            color: var(--color-text);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .example-box p:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        /* =================================================
+           DICA
+           ================================================= */
+
+        .tip-box {
+
+            display: flex;
+
+            gap: 14px;
+
+            padding: 18px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-md);
+
+            background: var(--color-surface);
+
+        }
+
+
+        .tip-icon {
+
+            width: 38px;
+            height: 38px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: var(--color-primary-light);
+
+            color: var(--color-primary);
+
+        }
+
+
+        .tip-content strong {
+
+            display: block;
+
+            margin-bottom: 4px;
+
+            color: var(--color-text);
+
+            font-size: 12px;
+
+        }
+
+
+        .tip-content span {
+
+            color: var(--color-text-muted);
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =================================================
+           BOTÕES
+           ================================================= */
+
+        .lesson-actions {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 30px;
+
+            padding-top: 22px;
+
+            border-top: 1px solid var(--color-border);
+
+        }
+
+
+        .lesson-action {
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            border: 0;
+
+            border-radius: var(--radius-md);
+
+            font-family: inherit;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background var(--transition-fast),
+                transform var(--transition-fast);
+
+        }
+
+
+        .lesson-action:hover {
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .lesson-action-secondary {
+
+            background: var(--color-background);
+
+            color: var(--color-text-muted);
+
+            border: 1px solid var(--color-border);
+
+        }
+
+
+        .lesson-action-secondary:hover {
+
+            color: var(--color-primary);
+
+            border-color: var(--color-primary);
+
+        }
+
+
+        .lesson-action-primary {
+
+            background: var(--color-primary);
+
+            color: #ffffff;
+
+        }
+
+
+        .lesson-action-primary:hover {
+
+            background: var(--color-primary-dark);
+
+        }
+
+
+        /* =================================================
+           ESTADO CONCLUÍDO
+           ================================================= */
+
+        .completed-message {
+
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border-radius: var(--radius-md);
+
+            background: var(--color-success-bg);
+
+            color: var(--color-success);
+
+            font-size: 13px;
+            font-weight: 700;
+
+            text-align: center;
+
+        }
+
+
+        .completed-message.show {
+
+            display: block;
+
+        }
+
+
+        /* =================================================
+           RESPONSIVIDADE
+           ================================================= */
+
+        @media (max-width: 800px) {
+
+            .revision-container {
+
+                padding-top: 20px;
+
+            }
+
+
+            .revision-header {
+
+                flex-direction: column;
+
+            }
+
+
+            .revision-progress-box {
+
+                width: 100%;
+
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .lesson-card-header,
+            .lesson-body {
+
+                padding: 20px;
+
+            }
+
+
+            .lesson-title {
+
+                font-size: 20px;
+
+            }
+
+
+            .formula-box {
+
+                font-size: 18px;
+
+                padding: 20px;
+
+            }
+
+
+            .lesson-actions {
+
+                flex-direction: column-reverse;
+
+                align-items: stretch;
+
+            }
+
+
+            .lesson-action {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div class="logo-text">
+                    <strong>Revisão</strong>
+                    <span>3º Ano A</span>
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <span class="nav-title">
+                    MENU
+                </span>
+
+
+                <a
+                    href="index.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>Início</span>
+
+                </a>
+
+
+                <a
+                    href="materias.html"
+                    class="nav-item active"
+                >
+
+                    <i class="fa-solid fa-book"></i>
+
+                    <span>Matérias</span>
+
+                </a>
+
+
+                <a
+                    href="questoes.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-circle-question"></i>
+
+                    <span>Questões</span>
+
+                </a>
+
+
+                <a
+                    href="desempenho.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>Desempenho</span>
+
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-exam">
+
+                <div class="exam-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div>
+
+                    <strong>
+                        Semana de provas
+                    </strong>
+
+                    <span>
+                        18 a 21 de agosto
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-footer">
+
+                <strong>
+                    3º ANO A
+                </strong>
+
+                <span>
+                    Preparação para as avaliações
+                </span>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             CONTEÚDO
+             ================================================= -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 TOPBAR
+                 ================================================= -->
+
+            <header class="topbar">
+
+                <div class="topbar-title">
+
+                    <button
+                        class="icon-button mobile-menu"
+                        id="menuToggle"
+                        aria-label="Abrir menu"
+                    >
+
+                        <i class="fa-solid fa-bars"></i>
+
+                    </button>
+
+
+                    <div>
+
+                        <span>
+                            REVISÃO ESCOLAR
+                        </span>
+
+                        <strong>
+                            Estudando
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <button
+                        class="icon-button"
+                        id="themeToggle"
+                        aria-label="Ativar modo escuro"
+                    >
+
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CONTAINER DA REVISÃO
+                 ================================================= -->
+
+            <div class="revision-container">
+
+
+                <!-- =================================================
+                     CABEÇALHO
+                     ================================================= -->
+
+                <header class="revision-header">
+
+                    <div class="revision-header-content">
+
+                        <a
+                            href="materias.html"
+                            class="back-link"
+                        >
+
+                            <i class="fa-solid fa-arrow-left"></i>
+
+                            Voltar para matérias
+
+                        </a>
+
+
+                        <div class="revision-label">
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            Modo revisão
+
+                        </div>
+
+
+                        <h1
+                            class="revision-title"
+                            id="revisionTitle"
+                        >
+                            Matemática
+                        </h1>
+
+
+                        <p
+                            class="revision-description"
+                            id="revisionDescription"
+                        >
+                            Revise os principais conteúdos
+                            antes de partir para as questões.
+                        </p>
+
+                    </div>
+
+
+                    <div class="revision-progress-box">
+
+                        <div class="revision-progress-top">
+
+                            <span>
+                                Progresso
+                            </span>
+
+                            <span
+                                class="revision-progress-number"
+                                id="revisionProgressNumber"
+                            >
+                                0%
+                            </span>
+
+                        </div>
+
+
+                        <div class="revision-progress-track">
+
+                            <div
+                                class="revision-progress-fill"
+                                id="revisionProgressFill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </header>
+
+
+                <!-- =================================================
+                     TÓPICOS
+                     ================================================= -->
+
+                <div
+                    class="topic-selector"
+                    id="topicSelector"
+                ></div>
+
+
+                <!-- =================================================
+                     AULA
+                     ================================================= -->
+
+                <article class="lesson-card">
+
+
+                    <header class="lesson-card-header">
+
+                        <span
+                            class="lesson-number"
+                            id="lessonNumber"
+                        >
+                            01
+                        </span>
+
+
+                        <h2
+                            class="lesson-title"
+                            id="lessonTitle"
+                        >
+                            Distância entre pontos
+                        </h2>
+
+
+                        <p
+                            class="lesson-subtitle"
+                            id="lessonSubtitle"
+                        >
+                            Matemática • Geometria analítica
+                        </p>
+
+                    </header>
+
+
+                    <div class="lesson-body">
+
+
+                        <!-- =================================================
+                             RESUMO
+                             ================================================= -->
+
+                        <section class="study-section">
+
+                            <h3 class="study-section-title">
+
+                                <i class="fa-solid fa-lightbulb"></i>
+
+                                Entenda
+
+                            </h3>
+
+
+                            <p
+                                class="study-text"
+                                id="lessonTheory"
+                            >
+                                A distância entre dois pontos
+                                no plano cartesiano representa
+                                o comprimento do segmento que
+                                liga esses pontos.
+
+                            </p>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             DESTAQUE
+                             ================================================= -->
+
+                        <section class="study-section">
+
+                            <div
+                                class="study-highlight"
+                                id="lessonHighlight"
+                            >
+                                Para encontrar a distância,
+                                usamos as coordenadas dos dois
+                                pontos e aplicamos a fórmula
+                                correspondente.
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             FÓRMULA
+                             ================================================= -->
+
+                        <section class="study-section">
+
+                            <h3 class="study-section-title">
+
+                                <i class="fa-solid fa-square-root-variable"></i>
+
+                                Fórmula
+
+                            </h3>
+
+
+                            <div
+                                class="formula-box"
+                                id="lessonFormula"
+                            >
+                                d = √[(x₂ - x₁)² + (y₂ - y₁)²]
+                            </div>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             EXEMPLO
+                             ================================================= -->
+
+                        <section class="study-section">
+
+                            <div class="example-box">
+
+                                <div class="example-label">
+
+                                    <i class="fa-solid fa-pen-ruler"></i>
+
+                                    Exemplo
+
+                                </div>
+
+
+                                <div id="lessonExample">
+
+                                    <p>
+                                        Considere os pontos
+                                        A(2, 3) e B(5, 7).
+                                    </p>
+
+                                    <p>
+                                        d = √[(5 - 2)² + (7 - 3)²]
+                                    </p>
+
+                                    <p>
+                                        d = √(9 + 16)
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            d = 5
+                                        </strong>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             DICA
+                             ================================================= -->
+
+                        <section class="study-section">
+
+                            <div class="tip-box">
+
+                                <div class="tip-icon">
+
+                                    <i class="fa-solid fa-star"></i>
+
+                                </div>
+
+
+                                <div class="tip-content">
+
+                                    <strong>
+                                        Dica para a prova
+                                    </strong>
+
+                                    <span id="lessonTip">
+
+                                        Organize as coordenadas
+                                        antes de substituir
+                                        os valores na fórmula.
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             AÇÕES
+                             ================================================= -->
+
+                        <div class="lesson-actions">
+
+                            <button
+                                type="button"
+                                class="lesson-action lesson-action-secondary"
+                                id="previousTopic"
+                            >
+
+                                <i class="fa-solid fa-arrow-left"></i>
+
+                                Anterior
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="lesson-action lesson-action-primary"
+                                id="completeTopic"
+                            >
+
+                                Marcar como estudado
+
+                                <i class="fa-solid fa-check"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="completed-message"
+                            id="completedMessage"
+                        >
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Conteúdo marcado como estudado!
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER
+                 ================================================= -->
+
+            <footer class="footer">
+
+                <span>
+                    Revisão 3º Ano A
+                </span>
+
+                <span>
+                    Estude com foco. Chegue preparado.
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="progresso.js"></script>
+
+    <script src="questoes.js"></script>
+
+    <script src="app.js"></script>
+
+
+    <!-- =====================================================
+         SISTEMA DA REVISÃO
+         ===================================================== -->
+
+    <script>
+
+        "use strict";
+
+
+        /* =================================================
+           DADOS DOS CONTEÚDOS
+           ================================================= */
+
+        const conteudosRevisao = {
+
+            matematica: [
+
+                {
+                    titulo:
+                        "Distância entre pontos",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "A distância entre dois pontos no plano cartesiano representa o comprimento do segmento que liga esses pontos. Para encontrá-la, usamos as coordenadas dos dois pontos.",
+
+                    destaque:
+                        "A distância é obtida a partir das diferenças entre as coordenadas x e y dos dois pontos.",
+
+                    formula:
+                        "d = √[(x₂ - x₁)² + (y₂ - y₁)²]",
+
+                    exemplo: [
+                        "Considere os pontos A(2, 3) e B(5, 7).",
+                        "d = √[(5 - 2)² + (7 - 3)²]",
+                        "d = √(9 + 16)",
+                        "d = 5"
+                    ],
+
+                    dica:
+                        "Organize as coordenadas antes de substituir os valores na fórmula."
+
+                },
+
+
+                {
+                    titulo:
+                        "Área de triângulo e quadrilátero",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "A área permite determinar a superfície ocupada por uma figura. Para o triângulo, usamos base e altura. Em outras figuras, a fórmula depende de suas características.",
+
+                    destaque:
+                        "Identifique primeiro qual é a figura e quais medidas são conhecidas.",
+
+                    formula:
+                        "Triângulo: A = (b · h) / 2",
+
+                    exemplo: [
+                        "Considere um triângulo com base 8 e altura 5.",
+                        "A = (8 · 5) / 2",
+                        "A = 40 / 2",
+                        "A = 20"
+                    ],
+
+                    dica:
+                        "Antes de calcular, identifique corretamente a base e a altura."
+
+                },
+
+
+                {
+                    titulo:
+                        "Ponto médio",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "O ponto médio é o ponto que divide um segmento exatamente ao meio. Ele pode ser encontrado calculando a média das coordenadas dos extremos do segmento.",
+
+                    destaque:
+                        "Some as coordenadas correspondentes e divida cada resultado por 2.",
+
+                    formula:
+                        "M = ((x₁ + x₂)/2, (y₁ + y₂)/2)",
+
+                    exemplo: [
+                        "Considere A(2, 4) e B(6, 8).",
+                        "Mx = (2 + 6) / 2 = 4",
+                        "My = (4 + 8) / 2 = 6",
+                        "M = (4, 6)"
+                    ],
+
+                    dica:
+                        "Calcule x e y separadamente para evitar confundir as coordenadas."
+
+                },
+
+
+                {
+                    titulo:
+                        "Centro de gravidade",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "O centro de gravidade de uma figura pode ser determinado a partir da relação entre as coordenadas dos pontos que formam a figura.",
+
+                    destaque:
+                        "Em problemas com pontos, observe quais coordenadas devem ser utilizadas no cálculo.",
+
+                    formula:
+                        "G = média das coordenadas dos pontos",
+
+                    exemplo: [
+                        "Considere pontos com coordenadas conhecidas.",
+                        "Some as coordenadas correspondentes.",
+                        "Divida cada soma pela quantidade de pontos.",
+                        "O resultado representa as coordenadas do centro."
+                    ],
+
+                    dica:
+                        "Preste atenção à quantidade de pontos utilizada no cálculo."
+
+                },
+
+
+                {
+                    titulo:
+                        "Equação geral da reta",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "A equação geral representa uma reta utilizando uma expressão do tipo ax + by + c = 0.",
+
+                    destaque:
+                        "Uma equação de reta pode ser escrita em diferentes formas, dependendo das informações fornecidas.",
+
+                    formula:
+                        "ax + by + c = 0",
+
+                    exemplo: [
+                        "Considere uma reta representada por:",
+                        "2x + 3y - 6 = 0",
+                        "Essa expressão está na forma geral da reta."
+                    ],
+
+                    dica:
+                        "Identifique os coeficientes a, b e c antes de realizar qualquer manipulação."
+
+                },
+
+
+                {
+                    titulo:
+                        "Equação reduzida da reta",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "A forma reduzida apresenta a reta como uma função de primeiro grau. Nela, podemos observar diretamente o coeficiente angular e o coeficiente linear.",
+
+                    destaque:
+                        "Na forma reduzida, o coeficiente angular indica a inclinação da reta.",
+
+                    formula:
+                        "y = ax + b",
+
+                    exemplo: [
+                        "Considere:",
+                        "y = 2x + 3",
+                        "O coeficiente angular é 2.",
+                        "O coeficiente linear é 3."
+                    ],
+
+                    dica:
+                        "Na forma y = ax + b, a representa o coeficiente angular e b o coeficiente linear."
+
+                },
+
+
+                {
+                    titulo:
+                        "Intersecção de retas",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "A intersecção de duas retas corresponde ao ponto em que elas se encontram. Para encontrá-lo, podemos resolver o sistema formado pelas duas equações.",
+
+                    destaque:
+                        "O ponto de intersecção precisa satisfazer as duas equações das retas.",
+
+                    formula:
+                        "Resolver o sistema das duas equações",
+
+                    exemplo: [
+                        "Considere duas equações de reta.",
+                        "Iguale as expressões quando estiverem na forma reduzida.",
+                        "Encontre o valor de x.",
+                        "Depois substitua x para encontrar y."
+                    ],
+
+                    dica:
+                        "Depois de encontrar o ponto, substitua-o nas duas equações para conferir."
+
+                },
+
+
+                {
+                    titulo:
+                        "Posição relativa ponto/reta",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "Para verificar a posição de um ponto em relação a uma reta, podemos substituir suas coordenadas na equação da reta.",
+
+                    destaque:
+                        "Se o ponto satisfaz a equação da reta, ele pertence à reta.",
+
+                    formula:
+                        "Ax + By + C = 0",
+
+                    exemplo: [
+                        "Considere uma reta e um ponto.",
+                        "Substitua as coordenadas do ponto na equação.",
+                        "Se o resultado for zero, o ponto pertence à reta."
+                    ],
+
+                    dica:
+                        "Sempre substitua x e y corretamente antes de analisar o resultado."
+
+                },
+
+
+                {
+                    titulo:
+                        "Posição relativa de duas retas",
+
+                    subtitulo:
+                        "Matemática • Geometria analítica",
+
+                    teoria:
+                        "Duas retas podem apresentar diferentes posições relativas, como serem concorrentes, paralelas ou coincidentes.",
+
+                    destaque:
+                        "Compare os coeficientes e observe os coeficientes angulares das retas.",
+
+                    formula:
+                        "Coeficientes angulares",
+
+                    exemplo: [
+                        "Retas com coeficientes angulares diferentes são concorrentes.",
+                        "Retas com o mesmo coeficiente angular podem ser paralelas ou coincidentes.",
+                        "A análise dos demais coeficientes permite diferenciá-las."
+                    ],
+
+                    dica:
+                        "Compare primeiro os coeficientes angulares antes de analisar a posição das retas."
+
+                }
+
+            ],
+
+
+            natureza: [
+
+                {
+                    titulo:
+                        "Tabela periódica",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química",
+
+                    teoria:
+                        "A tabela periódica organiza os elementos químicos de acordo com seus números atômicos e permite observar tendências e propriedades dos elementos.",
+
+                    destaque:
+                        "A organização da tabela facilita a comparação das propriedades dos elementos.",
+
+                    formula:
+                        "Número atômico → organização dos elementos",
+
+                    exemplo: [
+                        "Os elementos são organizados em ordem crescente de número atômico.",
+                        "As linhas são chamadas períodos.",
+                        "As colunas são chamadas grupos ou famílias."
+                    ],
+
+                    dica:
+                        "Observe a posição do elemento na tabela para analisar suas propriedades."
+
+                },
+
+
+                {
+                    titulo:
+                        "Raio atômico",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química",
+
+                    teoria:
+                        "O raio atômico está relacionado ao tamanho do átomo e apresenta tendências ao longo da tabela periódica.",
+
+                    destaque:
+                        "A posição do elemento na tabela ajuda a comparar o tamanho dos átomos.",
+
+                    formula:
+                        "Raio atômico → tamanho do átomo",
+
+                    exemplo: [
+                        "Compare elementos que estejam no mesmo período.",
+                        "Observe suas posições na tabela.",
+                        "A tendência periódica permite determinar qual apresenta maior raio."
+                    ],
+
+                    dica:
+                        "Memorize a tendência periódica do raio atômico."
+
+                },
+
+
+                {
+                    titulo:
+                        "Eletronegatividade",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química",
+
+                    teoria:
+                        "Eletronegatividade representa a tendência de um átomo atrair para si os elétrons envolvidos em uma ligação química.",
+
+                    destaque:
+                        "Quanto maior a eletronegatividade, maior a tendência de atrair elétrons.",
+
+                    formula:
+                        "Eletronegatividade → atração por elétrons",
+
+                    exemplo: [
+                        "Compare dois elementos em uma ligação.",
+                        "O elemento mais eletronegativo tende a atrair mais os elétrons da ligação."
+                    ],
+
+                    dica:
+                        "Observe a posição dos elementos na tabela periódica."
+
+                },
+
+
+                {
+                    titulo:
+                        "Eletropositividade",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química",
+
+                    teoria:
+                        "A eletropositividade está relacionada à tendência de um átomo perder elétrons e formar espécies positivas.",
+
+                    destaque:
+                        "Elementos com maior tendência de perder elétrons apresentam maior eletropositividade.",
+
+                    formula:
+                        "Eletropositividade → tendência de perder elétrons",
+
+                    exemplo: [
+                        "Metais geralmente apresentam maior tendência de perder elétrons.",
+                        "Essa característica está relacionada às propriedades periódicas."
+                    ],
+
+                    dica:
+                        "Compare a eletropositividade considerando a posição dos elementos na tabela."
+
+                },
+
+
+                {
+                    titulo:
+                        "Energia de ionização",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química",
+
+                    teoria:
+                        "A energia de ionização corresponde à energia necessária para retirar um elétron de um átomo isolado no estado gasoso.",
+
+                    destaque:
+                        "Quanto mais difícil for retirar o elétron, maior será a energia de ionização.",
+
+                    formula:
+                        "Átomo(g) → íon⁺(g) + e⁻",
+
+                    exemplo: [
+                        "Um átomo recebe energia.",
+                        "Um elétron é removido.",
+                        "O átomo transforma-se em um íon positivo."
+                    ],
+
+                    dica:
+                        "Relacione a energia de ionização com a dificuldade de retirar elétrons."
+
+                },
+
+
+                {
+                    titulo:
+                        "Classificação do carbono",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química Orgânica",
+
+                    teoria:
+                        "Na Química Orgânica, os átomos de carbono podem ser classificados de acordo com a quantidade de outros carbonos aos quais estão ligados.",
+
+                    destaque:
+                        "A classificação considera quantos outros átomos de carbono estão diretamente ligados ao carbono analisado.",
+
+                    formula:
+                        "1º, 2º, 3º e 4º",
+
+                    exemplo: [
+                        "Carbono ligado a 1 carbono → primário.",
+                        "Carbono ligado a 2 carbonos → secundário.",
+                        "Carbono ligado a 3 carbonos → terciário.",
+                        "Carbono ligado a 4 carbonos → quaternário."
+                    ],
+
+                    dica:
+                        "Conte apenas os carbonos diretamente ligados ao carbono analisado."
+
+                },
+
+
+                {
+                    titulo:
+                        "Cadeias carbônicas",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química Orgânica",
+
+                    teoria:
+                        "As cadeias carbônicas representam a sequência de átomos de carbono presentes em compostos orgânicos e podem ser classificadas de diferentes maneiras.",
+
+                    destaque:
+                        "Observe se a cadeia é aberta ou fechada e se apresenta ligações simples ou múltiplas.",
+
+                    formula:
+                        "Cadeia → classificação estrutural",
+
+                    exemplo: [
+                        "Uma cadeia com apenas ligações simples entre carbonos é saturada.",
+                        "Uma cadeia com ligações múltiplas pode ser classificada como insaturada."
+                    ],
+
+                    dica:
+                        "Analise primeiro a estrutura da cadeia antes de classificá-la."
+
+                },
+
+
+                {
+                    titulo:
+                        "Hibridização",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química Orgânica",
+
+                    teoria:
+                        "A hibridização descreve a combinação de orbitais atômicos para formar novos orbitais híbridos, ajudando a explicar as ligações e a geometria das moléculas.",
+
+                    destaque:
+                        "Os tipos de hibridização estão relacionados à geometria e ao tipo de ligação.",
+
+                    formula:
+                        "sp • sp² • sp³",
+
+                    exemplo: [
+                        "sp → geometria linear.",
+                        "sp² → geometria trigonal plana.",
+                        "sp³ → geometria tetraédrica."
+                    ],
+
+                    dica:
+                        "Associe cada tipo de hibridização à sua geometria."
+
+                },
+
+
+                {
+                    titulo:
+                        "Fórmula molecular",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química Orgânica",
+
+                    teoria:
+                        "A fórmula molecular indica quais elementos estão presentes em uma substância e quantos átomos de cada elemento participam da molécula.",
+
+                    destaque:
+                        "Os índices presentes na fórmula indicam a quantidade de átomos de cada elemento.",
+
+                    formula:
+                        "CₓHᵧ...",
+
+                    exemplo: [
+                        "Na fórmula C₂H₆ existem:",
+                        "2 átomos de carbono.",
+                        "6 átomos de hidrogênio."
+                    ],
+
+                    dica:
+                        "Leia os índices da fórmula com atenção."
+
+                },
+
+
+                {
+                    titulo:
+                        "Funções orgânicas",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química Orgânica",
+
+                    teoria:
+                        "As funções orgânicas agrupam compostos que apresentam determinados grupos funcionais e características químicas semelhantes.",
+
+                    destaque:
+                        "O grupo funcional ajuda a identificar a função orgânica presente.",
+
+                    formula:
+                        "Grupo funcional → função orgânica",
+
+                    exemplo: [
+                        "Ao analisar uma estrutura orgânica, identifique os átomos e grupos presentes.",
+                        "Depois compare com as características das funções orgânicas."
+                    ],
+
+                    dica:
+                        "Aprenda a reconhecer visualmente os principais grupos funcionais."
+
+                },
+
+
+                {
+                    titulo:
+                        "Nomenclatura de hidrocarbonetos",
+
+                    subtitulo:
+                        "Ciências da Natureza • Química Orgânica",
+
+                    teoria:
+                        "A nomenclatura dos hidrocarbonetos permite identificar compostos formados por carbono e hidrogênio a partir de regras estabelecidas.",
+
+                    destaque:
+                        "O nome depende da quantidade de carbonos e do tipo de ligação presente na cadeia.",
+
+                    formula:
+                        "Prefixo + infixo + sufixo",
+
+                    exemplo: [
+                        "O prefixo indica a quantidade de carbonos.",
+                        "O infixo está relacionado ao tipo de ligação.",
+                        "O sufixo identifica a função hidrocarboneto."
+                    ],
+
+                    dica:
+                        "Conte a quantidade de carbonos da cadeia principal antes de montar o nome."
+
+                },
+
+
+                {
+                    titulo:
+                        "Citologia",
+
+                    subtitulo:
+                        "Ciências da Natureza • Biologia",
+
+                    teoria:
+                        "A citologia é a área da Biologia que estuda as células, suas estruturas e seu funcionamento.",
+
+                    destaque:
+                        "A célula é a unidade básica estrutural e funcional dos seres vivos.",
+
+                    formula:
+                        "Célula → estrutura e funcionamento",
+
+                    exemplo: [
+                        "Ao estudar uma célula, observe suas estruturas.",
+                        "Relacione cada estrutura à sua função."
+                    ],
+
+                    dica:
+                        "Associe cada organela à sua principal função."
+
+                },
+
+
+                {
+                    titulo:
+                        "Tecido epitelial",
+
+                    subtitulo:
+                        "Ciências da Natureza • Biologia",
+
+                    teoria:
+                        "O tecido epitelial atua principalmente no revestimento e proteção das superfícies do organismo e também pode participar de processos de absorção e secreção.",
+
+                    destaque:
+                        "O revestimento é uma das funções fundamentais do tecido epitelial.",
+
+                    formula:
+                        "Tecido epitelial → revestimento e proteção",
+
+                    exemplo: [
+                        "O tecido epitelial pode revestir superfícies externas.",
+                        "Também pode formar estruturas relacionadas à secreção."
+                    ],
+
+                    dica:
+                        "Associe tecido epitelial principalmente a revestimento e proteção."
+
+                },
+
+
+                {
+                    titulo:
+                        "Circuitos elétricos",
+
+                    subtitulo:
+                        "Ciências da Natureza • Física",
+
+                    teoria:
+                        "Um circuito elétrico é formado por componentes conectados de modo a permitir o funcionamento do sistema elétrico.",
+
+                    destaque:
+                        "A corrente elétrica está associada ao movimento ordenado de cargas elétricas.",
+
+                    formula:
+                        "U = R · i",
+
+                    exemplo: [
+                        "Um circuito pode possuir gerador, fios e outros componentes.",
+                        "A corrente percorre o circuito quando existe uma condição adequada para sua circulação."
+                    ],
+
+                    dica:
+                        "Identifique a função de cada componente antes de analisar o circuito."
+
+                },
+
+
+                {
+                    titulo:
+                        "Geradores e receptores elétricos",
+
+                    subtitulo:
+                        "Ciências da Natureza • Física",
+
+                    teoria:
+                        "Geradores e receptores são componentes elétricos com funções diferentes. O gerador fornece energia elétrica ao circuito, enquanto o receptor utiliza energia elétrica e a transforma em outras formas de energia.",
+
+                    destaque:
+                        "Gerador fornece energia; receptor recebe e transforma energia.",
+
+                    formula:
+                        "Energia → transformação",
+
+                    exemplo: [
+                        "Uma bateria pode atuar como fonte de energia elétrica.",
+                        "Um motor elétrico pode receber energia e transformá-la em energia mecânica."
+                    ],
+
+                    dica:
+                        "Lembre-se da diferença: gerador fornece energia e receptor utiliza energia."
+
+                }
+
+            ],
+
+
+            humanas: [
+
+                {
+                    titulo:
+                        "Liberdade, Igualdade e Sustentabilidade",
+
+                    subtitulo:
+                        "Ciências Humanas",
+
+                    teoria:
+                        "O estudo de liberdade, igualdade e sustentabilidade permite refletir sobre direitos, organização da sociedade e relações entre desenvolvimento e preservação.",
+
+                    destaque:
+                        "Os conceitos podem ser analisados em conjunto para compreender desafios da vida em sociedade.",
+
+                    formula:
+                        "Liberdade + Igualdade + Sustentabilidade",
+
+                    exemplo: [
+                        "Analise situações sociais.",
+                        "Identifique quais direitos estão envolvidos.",
+                        "Observe também os impactos sociais e ambientais."
+                    ],
+
+                    dica:
+                        "Relacione os conceitos com situações concretas da sociedade."
+
+                },
+
+
+                {
+                    titulo:
+                        "Direitos, Economia e Cultura nos tempos da Ditadura",
+
+                    subtitulo:
+                        "Ciências Humanas • História",
+
+                    teoria:
+                        "O conteúdo aborda aspectos relacionados aos direitos, à economia e à cultura durante o período de ditadura, permitindo compreender transformações políticas e sociais.",
+
+                    destaque:
+                        "Analise o período considerando diferentes dimensões da sociedade.",
+
+                    formula:
+                        "Política + Economia + Cultura + Direitos",
+
+                    exemplo: [
+                        "Observe as mudanças políticas.",
+                        "Relacione-as aos impactos econômicos e culturais.",
+                        "Considere também a questão dos direitos."
+                    ],
+
+                    dica:
+                        "Evite estudar os acontecimentos de forma isolada; relacione política, economia e cultura."
+
+                },
+
+
+                {
+                    titulo:
+                        "Hidrografia",
+
+                    subtitulo:
+                        "Ciências Humanas • Geografia",
+
+                    teoria:
+                        "A hidrografia estuda as águas da superfície terrestre, incluindo rios, lagos, bacias hidrográficas e outros recursos hídricos.",
+
+                    destaque:
+                        "As bacias hidrográficas são importantes para compreender a distribuição e o uso das águas.",
+
+                    formula:
+                        "Bacia hidrográfica → área drenada por um sistema de rios",
+
+                    exemplo: [
+                        "Identifique um rio principal.",
+                        "Observe seus afluentes.",
+                        "A área drenada pelo sistema forma uma bacia hidrográfica."
+                    ],
+
+                    dica:
+                        "Relacione hidrografia com rios, bacias, recursos hídricos e uso da água."
+
+                }
+
+            ],
+
+
+            linguagens: [
+
+                {
+                    titulo:
+                        "Redação dissertativa-argumentativa",
+
+                    subtitulo:
+                        "Linguagens • Produção textual",
+
+                    teoria:
+                        "A redação dissertativa-argumentativa apresenta uma ideia ou ponto de vista e utiliza argumentos para defendê-lo. A organização das ideias é fundamental para a construção do texto.",
+
+                    destaque:
+                        "O texto precisa apresentar uma posição e desenvolvê-la por meio de argumentos.",
+
+                    formula:
+                        "Tese + Argumentação + Conclusão",
+
+                    exemplo: [
+                        "Introdução: apresente o tema e sua tese.",
+                        "Desenvolvimento: apresente argumentos e explique-os.",
+                        "Conclusão: retome a ideia e encaminhe o fechamento do texto."
+                    ],
+
+                    dica:
+                        "Antes de escrever, organize sua tese e os principais argumentos."
+
+                }
+
+            ]
+
+        };
+
+
+        /* =================================================
+           ELEMENTOS
+           ================================================= */
+
+        const revisionTitle =
+            document.getElementById(
+                "revisionTitle"
+            );
+
+
+        const revisionDescription =
+            document.getElementById(
+                "revisionDescription"
+            );
+
+
+        const topicSelector =
+            document.getElementById(
+                "topicSelector"
+            );
+
+
+        const lessonNumber =
+            document.getElementById(
+                "lessonNumber"
+            );
+
+
+        const lessonTitle =
+            document.getElementById(
+                "lessonTitle"
+            );
+
+
+        const lessonSubtitle =
+            document.getElementById(
+                "lessonSubtitle"
+            );
+
+
+        const lessonTheory =
+            document.getElementById(
+                "lessonTheory"
+            );
+
+
+        const lessonHighlight =
+            document.getElementById(
+                "lessonHighlight"
+            );
+
+
+        const lessonFormula =
+            document.getElementById(
+                "lessonFormula"
+            );
+
+
+        const lessonExample =
+            document.getElementById(
+                "lessonExample"
+            );
+
+
+        const lessonTip =
+            document.getElementById(
+                "lessonTip"
+            );
+
+
+        const previousTopic =
+            document.getElementById(
+                "previousTopic"
+            );
+
+
+        const completeTopic =
+            document.getElementById(
+                "completeTopic"
+            );
+
+
+        const completedMessage =
+            document.getElementById(
+                "completedMessage"
+            );
+
+
+        const progressNumber =
+            document.getElementById(
+                "revisionProgressNumber"
+            );
+
+
+        const progressFill =
+            document.getElementById(
+                "revisionProgressFill"
+            );
+
+
+        /* =================================================
+           ESTADO
+           ================================================= */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        let materiaAtual =
+            params.get("materia") ||
+            "matematica";
+
+
+        let indiceAtual = 0;
+
+
+        let conteudosAtuais =
+            conteudosRevisao[
+                materiaAtual
+            ];
+
+
+        /*
+         * Se a matéria não existir,
+         * utiliza Matemática como padrão.
+         */
+
+        if (!conteudosAtuais) {
+
+            materiaAtual =
+                "matematica";
+
+            conteudosAtuais =
+                conteudosRevisao[
+                    materiaAtual
+                ];
+
+        }
+
+
+        /* =================================================
+           NOMES DAS MATÉRIAS
+           ================================================= */
+
+        const nomesMaterias = {
+
+            matematica:
+                "Matemática",
+
+            natureza:
+                "Ciências da Natureza",
+
+            humanas:
+                "Ciências Humanas",
+
+            linguagens:
+                "Linguagens"
+
+        };
+
+
+        /* =================================================
+           STORAGE DOS TÓPICOS
+           ================================================= */
+
+        const TOPICS_STORAGE =
+            "revisao-3a-topicos";
+
+
+        function carregarTopicos() {
+
+            try {
+
+                const dados =
+                    localStorage.getItem(
+                        TOPICS_STORAGE
+                    );
+
+
+                if (!dados) {
+
+                    return [];
+
+                }
+
+
+                const resultado =
+                    JSON.parse(dados);
+
+
+                return Array.isArray(resultado)
+                    ? resultado
+                    : [];
+
+            } catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+        function salvarTopicos(
+            topicos
+        ) {
+
+            localStorage.setItem(
+                TOPICS_STORAGE,
+                JSON.stringify(topicos)
+            );
+
+        }
+
+
+        /* =================================================
+           ID DO TÓPICO
+           ================================================= */
+
+        function gerarIdTopico(
+            materia,
+            indice
+        ) {
+
+            return `${materia}-${indice}`;
+
+        }
+
+
+        /* =================================================
+           VERIFICAR CONCLUSÃO
+           ================================================= */
+
+        function topicoFoiConcluido() {
+
+            const concluidos =
+                carregarTopicos();
+
+
+            const id =
+                gerarIdTopico(
+                    materiaAtual,
+                    indiceAtual
+                );
+
+
+            return concluidos.includes(id);
+
+        }
+
+
+        /* =================================================
+           ATUALIZAR TÍTULO
+           ================================================= */
+
+        function atualizarCabecalho() {
+
+            revisionTitle.textContent =
+                nomesMaterias[
+                    materiaAtual
+                ];
+
+
+            revisionDescription.textContent =
+                `Revise os principais conteúdos de ${nomesMaterias[materiaAtual]} antes de partir para as questões.`;
+
+        }
+
+
+        /* =================================================
+           CRIAR BOTÕES DE TÓPICOS
+           ================================================= */
+
+        function criarSeletorTopicos() {
+
+            topicSelector.innerHTML = "";
+
+
+            conteudosAtuais.forEach(
+                (conteudo, indice) => {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.type =
+                        "button";
+
+
+                    button.textContent =
+                        conteudo.titulo;
+
+
+                    button.dataset.index =
+                        indice;
+
+
+                    if (
+                        indice === indiceAtual
+                    ) {
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                    }
+
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            indiceAtual =
+                                indice;
+
+                            renderizarAula();
+
+                            criarSeletorTopicos();
+
+                        }
+                    );
+
+
+                    topicSelector.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           RENDERIZAR EXEMPLO
+           ================================================= */
+
+        function renderizarExemplo(
+            exemplos
+        ) {
+
+            lessonExample.innerHTML =
+                "";
+
+
+            exemplos.forEach(
+                (linha, indice) => {
+
+                    const p =
+                        document.createElement(
+                            "p"
+                        );
+
+
+                    p.textContent =
+                        linha;
+
+
+                    /*
+                     * Destaca a última linha
+                     * do exemplo.
+                     */
+
+                    if (
+                        indice ===
+                        exemplos.length - 1
+                    ) {
+
+                        const strong =
+                            document.createElement(
+                                "strong"
+                            );
+
+
+                        strong.textContent =
+                            linha;
+
+
+                        p.textContent =
+                            "";
+
+
+                        p.appendChild(
+                            strong
+                        );
+
+                    }
+
+
+                    lessonExample.appendChild(
+                        p
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           RENDERIZAR AULA
+           ================================================= */
+
+        function renderizarAula() {
+
+            const conteudo =
+                conteudosAtuais[
+                    indiceAtual
+                ];
+
+
+            if (!conteudo) {
+
+                return;
+
+            }
+
+
+            lessonNumber.textContent =
+                String(
+                    indiceAtual + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            lessonTitle.textContent =
+                conteudo.titulo;
+
+
+            lessonSubtitle.textContent =
+                conteudo.subtitulo;
+
+
+            lessonTheory.textContent =
+                conteudo.teoria;
+
+
+            lessonHighlight.textContent =
+                conteudo.destaque;
+
+
+            lessonFormula.textContent =
+                conteudo.formula;
+
+
+            lessonTip.textContent =
+                conteudo.dica;
+
+
+            renderizarExemplo(
+                conteudo.exemplo
+            );
+
+
+            atualizarEstadoConclusao();
+
+            atualizarNavegacao();
+
+            atualizarProgresso();
+
+        }
+
+
+        /* =================================================
+           ESTADO DE CONCLUSÃO
+           ================================================= */
+
+        function atualizarEstadoConclusao() {
+
+            const concluido =
+                topicoFoiConcluido();
+
+
+            if (concluido) {
+
+                completeTopic.innerHTML =
+                    `
+                    Estudado
+                    <i class="fa-solid fa-check"></i>
+                    `;
+
+                completeTopic.style.background =
+                    "var(--color-success)";
+
+
+                completedMessage.classList.add(
+                    "show"
+                );
+
+            } else {
+
+                completeTopic.innerHTML =
+                    `
+                    Marcar como estudado
+                    <i class="fa-solid fa-check"></i>
+                    `;
+
+                completeTopic.style.background =
+                    "";
+
+
+                completedMessage.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+
+
+        /* =================================================
+           MARCAR COMO ESTUDADO
+           ================================================= */
+
+        function alternarConclusao() {
+
+            const id =
+                gerarIdTopico(
+                    materiaAtual,
+                    indiceAtual
+                );
+
+
+            let concluidos =
+                carregarTopicos();
+
+
+            if (
+                concluidos.includes(id)
+            ) {
+
+                concluidos =
+                    concluidos.filter(
+                        (item) =>
+                            item !== id
+                    );
+
+            } else {
+
+                concluidos.push(id);
+
+            }
+
+
+            salvarTopicos(
+                concluidos
+            );
+
+
+            atualizarEstadoConclusao();
+
+            atualizarProgresso();
+
+        }
+
+
+        /* =================================================
+           PROGRESSO
+           ================================================= */
+
+        function atualizarProgresso() {
+
+            const concluidos =
+                carregarTopicos();
+
+
+            let totalConcluidos = 0;
+
+
+            conteudosAtuais.forEach(
+                (_, indice) => {
+
+                    const id =
+                        gerarIdTopico(
+                            materiaAtual,
+                            indice
+                        );
+
+
+                    if (
+                        concluidos.includes(id)
+                    ) {
+
+                        totalConcluidos++;
+
+                    }
+
+                }
+            );
+
+
+            const total =
+                conteudosAtuais.length;
+
+
+            const porcentagem =
+                total > 0
+                    ? Math.round(
+                        (
+                            totalConcluidos /
+                            total
+                        ) * 100
+                    )
+                    : 0;
+
+
+            progressNumber.textContent =
+                `${porcentagem}%`;
+
+
+            progressFill.style.width =
+                `${porcentagem}%`;
+
+        }
+
+
+        /* =================================================
+           NAVEGAÇÃO
+           ================================================= */
+
+        function atualizarNavegacao() {
+
+            previousTopic.disabled =
+                indiceAtual === 0;
+
+
+            previousTopic.style.opacity =
+                indiceAtual === 0
+                    ? "0.5"
+                    : "1";
+
+        }
+
+
+        function irParaAnterior() {
+
+            if (
+                indiceAtual <= 0
+            ) {
+
+                return;
+
+            }
+
+
+            indiceAtual--;
+
+            renderizarAula();
+
+            criarSeletorTopicos();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        function irParaProximo() {
+
+            if (
+                indiceAtual >=
+                conteudosAtuais.length - 1
+            ) {
+
+                /*
+                 * Ao terminar a matéria,
+                 * leva para as questões.
+                 */
+
+                window.location.href =
+                    `questoes.html?materia=${materiaAtual}`;
+
+                return;
+
+            }
+
+
+            indiceAtual++;
+
+            renderizarAula();
+
+            criarSeletorTopicos();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =================================================
+           EVENTOS
+           ================================================= */
+
+        previousTopic.addEventListener(
+            "click",
+            irParaAnterior
+        );
+
+
+        completeTopic.addEventListener(
+            "click",
+            () => {
+
+                alternarConclusao();
+
+            }
+        );
+
+
+        /* =================================================
+           INICIALIZAÇÃO
+           ================================================= */
+
+        atualizarCabecalho();
+
+        criarSeletorTopicos();
+
+        renderizarAula();
+
+    </script>
+
+</body>
+
+</html>

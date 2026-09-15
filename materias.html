@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Matérias | Revisão 3º Ano A</title>
+
+
+    <!-- =====================================================
+         FONTES
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="reset.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="components.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- =====================================================
+         ESTILOS ESPECÍFICOS DA PÁGINA
+         ===================================================== -->
+
+    <style>
+
+        .page-container {
+            width: 100%;
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            padding-top: 28px;
+        }
+
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+
+        .page-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 10px;
+
+            color: var(--color-primary);
+
+            font-size: 13px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+
+        .page-title {
+            margin-bottom: 8px;
+
+            color: var(--color-text);
+
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            line-height: 1.15;
+        }
+
+
+        .page-description {
+            max-width: 720px;
+
+            color: var(--color-text-muted);
+
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+
+        /* =================================================
+           FILTRO
+           ================================================= */
+
+        .subject-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .subject-filter button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 16px;
+
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+
+            background: var(--color-surface);
+
+            color: var(--color-text-muted);
+
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                background var(--transition-fast),
+                color var(--transition-fast),
+                border-color var(--transition-fast),
+                transform var(--transition-fast);
+        }
+
+
+        .subject-filter button:hover {
+            border-color: var(--color-primary);
+
+            color: var(--color-primary);
+
+            transform: translateY(-1px);
+        }
+
+
+        .subject-filter button.active {
+            border-color: var(--color-primary);
+
+            background: var(--color-primary);
+
+            color: #ffffff;
+        }
+
+
+        /* =================================================
+           GRID DE MATÉRIAS
+           ================================================= */
+
+        .subjects-page-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+
+        .subject-card {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 24px;
+
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+
+            background: var(--color-surface);
+
+            box-shadow: var(--shadow-sm);
+
+            transition:
+                transform var(--transition-normal),
+                box-shadow var(--transition-normal),
+                border-color var(--transition-normal);
+        }
+
+
+        .subject-card:hover {
+            border-color: var(--color-primary);
+
+            box-shadow: var(--shadow-md);
+
+            transform: translateY(-3px);
+        }
+
+
+        .subject-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 16px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .subject-card-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+
+        .subject-card-icon {
+            width: 48px;
+            height: 48px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: var(--color-primary-light);
+
+            color: var(--color-primary);
+
+            font-size: 20px;
+        }
+
+
+        .subject-card h2 {
+            margin: 0 0 4px;
+
+            color: var(--color-text);
+
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+
+        .subject-card-subtitle {
+            color: var(--color-text-muted);
+
+            font-size: 12px;
+        }
+
+
+        .subject-card-count {
+            flex-shrink: 0;
+
+            padding: 6px 9px;
+
+            border-radius: 8px;
+
+            background: var(--color-background);
+
+            color: var(--color-text-muted);
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* =================================================
+           LISTA DE CONTEÚDOS
+           ================================================= */
+
+        .topic-list {
+            display: flex;
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin: 0;
+            padding: 0;
+
+            list-style: none;
+        }
+
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            min-width: 0;
+
+            padding: 12px 13px;
+
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+
+            background: var(--color-background);
+
+            transition:
+                border-color var(--transition-fast),
+                background var(--transition-fast);
+        }
+
+
+        .topic-item:hover {
+            border-color: var(--color-primary);
+
+            background: var(--color-primary-light);
+        }
+
+
+        .topic-check {
+            width: 20px;
+            height: 20px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1.5px solid var(--color-border);
+            border-radius: 50%;
+
+            background: var(--color-surface);
+
+            color: transparent;
+
+            font-size: 10px;
+
+            transition:
+                background var(--transition-fast),
+                border-color var(--transition-fast),
+                color var(--transition-fast);
+        }
+
+
+        .topic-item.completed .topic-check {
+            border-color: var(--color-success);
+
+            background: var(--color-success);
+
+            color: #ffffff;
+        }
+
+
+        .topic-item.completed .topic-name {
+            color: var(--color-text-muted);
+
+            text-decoration: line-through;
+        }
+
+
+        .topic-name {
+            min-width: 0;
+
+            flex: 1;
+
+            color: var(--color-text);
+
+            font-size: 13px;
+            font-weight: 500;
+
+            line-height: 1.4;
+        }
+
+
+        .topic-action {
+            flex-shrink: 0;
+
+            border: 0;
+
+            background: transparent;
+
+            color: var(--color-text-muted);
+
+            cursor: pointer;
+
+            font-size: 13px;
+        }
+
+
+        .topic-action:hover {
+            color: var(--color-primary);
+        }
+
+
+        /* =================================================
+           PROGRESSO
+           ================================================= */
+
+        .subject-progress {
+            margin-top: 20px;
+            padding-top: 18px;
+
+            border-top: 1px solid var(--color-border);
+        }
+
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+        }
+
+
+        .progress-label {
+            color: var(--color-text-muted);
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+
+        .progress-value {
+            color: var(--color-primary);
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        .progress-track {
+            width: 100%;
+            height: 7px;
+
+            overflow: hidden;
+
+            border-radius: 999px;
+
+            background: var(--color-border);
+        }
+
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+
+            border-radius: inherit;
+
+            background: var(--color-primary);
+
+            transition:
+                width 400ms ease;
+        }
+
+
+        /* =================================================
+           BOTÃO DE REVISÃO
+           ================================================= */
+
+        .review-button {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            margin-top: 16px;
+            padding: 11px 16px;
+
+            border: 0;
+            border-radius: var(--radius-md);
+
+            background: var(--color-primary);
+
+            color: #ffffff;
+
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background var(--transition-fast),
+                transform var(--transition-fast);
+        }
+
+
+        .review-button:hover {
+            background: var(--color-primary-dark);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =================================================
+           RESPONSIVIDADE
+           ================================================= */
+
+        @media (max-width: 900px) {
+
+            .subjects-page-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .page-container {
+                padding-top: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .page-title {
+                font-size: 28px;
+            }
+
+
+            .subject-card {
+                padding: 18px;
+            }
+
+
+            .subject-card-header {
+                gap: 10px;
+            }
+
+
+            .subject-filter {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+
+                padding-bottom: 4px;
+            }
+
+
+            .subject-filter button {
+                flex-shrink: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div class="logo-text">
+                    <strong>Revisão</strong>
+                    <span>3º Ano A</span>
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <span class="nav-title">
+                    MENU
+                </span>
+
+
+                <a
+                    href="index.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>Início</span>
+
+                </a>
+
+
+                <a
+                    href="materias.html"
+                    class="nav-item active"
+                >
+
+                    <i class="fa-solid fa-book"></i>
+
+                    <span>Matérias</span>
+
+                </a>
+
+
+                <a
+                    href="questoes.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-circle-question"></i>
+
+                    <span>Questões</span>
+
+                </a>
+
+
+                <a
+                    href="desempenho.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>Desempenho</span>
+
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-exam">
+
+                <div class="exam-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <strong>Semana de provas</strong>
+                    <span>18 a 21 de agosto</span>
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-footer">
+
+                <strong>3º ANO A</strong>
+
+                <span>
+                    Preparação para as avaliações
+                </span>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             CONTEÚDO PRINCIPAL
+             ================================================= -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 TOPBAR
+                 ================================================= -->
+
+            <header class="topbar">
+
+                <div class="topbar-title">
+
+                    <button
+                        class="icon-button mobile-menu"
+                        id="menuToggle"
+                        aria-label="Abrir menu"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+
+                        <span>
+                            REVISÃO ESCOLAR
+                        </span>
+
+                        <strong>
+                            Matérias
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <button
+                        class="icon-button"
+                        id="themeToggle"
+                        aria-label="Ativar modo escuro"
+                        title="Ativar modo escuro"
+                    >
+
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 PÁGINA
+                 ================================================= -->
+
+            <div class="page-container">
+
+
+                <!-- =================================================
+                     CABEÇALHO
+                     ================================================= -->
+
+                <section class="page-header">
+
+                    <div class="page-label">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                        Conteúdos da avaliação
+
+                    </div>
+
+
+                    <h1 class="page-title">
+                        O que você precisa revisar?
+                    </h1>
+
+
+                    <p class="page-description">
+
+                        Escolha uma área e revise os conteúdos
+                        previstos para as avaliações do 3º Ano A.
+                        Marque os assuntos que você já estudou
+                        para acompanhar seu progresso.
+
+                    </p>
+
+                </section>
+
+
+                <!-- =================================================
+                     FILTROS
+                     ================================================= -->
+
+                <div
+                    class="subject-filter"
+                    id="subjectFilter"
+                >
+
+                    <button
+                        type="button"
+                        class="active"
+                        data-filter="all"
+                    >
+
+                        <i class="fa-solid fa-border-all"></i>
+
+                        Todas
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-filter="matematica"
+                    >
+
+                        <i class="fa-solid fa-calculator"></i>
+
+                        Matemática
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-filter="natureza"
+                    >
+
+                        <i class="fa-solid fa-flask"></i>
+
+                        Natureza
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-filter="humanas"
+                    >
+
+                        <i class="fa-solid fa-earth-americas"></i>
+
+                        Humanas
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-filter="linguagens"
+                    >
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Linguagens
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     CARDS
+                     ================================================= -->
+
+                <section
+                    class="subjects-page-grid"
+                    id="subjectsGrid"
+                >
+
+
+                    <!-- =================================================
+                         MATEMÁTICA
+                         ================================================= -->
+
+                    <article
+                        class="subject-card"
+                        data-subject="matematica"
+                    >
+
+                        <div class="subject-card-header">
+
+                            <div class="subject-card-title">
+
+                                <div class="subject-card-icon">
+
+                                    <i class="fa-solid fa-calculator"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Matemática
+                                    </h2>
+
+                                    <span class="subject-card-subtitle">
+                                        Geometria analítica
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <span class="subject-card-count">
+                                9 conteúdos
+                            </span>
+
+                        </div>
+
+
+                        <ul class="topic-list">
+
+                            <li class="topic-item"
+                                data-topic="mat-distancia">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Distância entre pontos
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="mat-area">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Área de triângulo e quadrilátero
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="mat-ponto-medio">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Ponto médio
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="mat-centro-gravidade">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Centro de gravidade
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="mat-reta-geral">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Equação geral da reta
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="mat-reta-reduzida">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Equação reduzida da reta
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="mat-interseccao">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Intersecção de retas
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="mat-ponto-reta">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Posição relativa ponto/reta
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="mat-retas">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Posição relativa de duas retas
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                    title="Marcar como estudado"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+                        </ul>
+
+
+                        <div class="subject-progress">
+
+                            <div class="progress-info">
+
+                                <span class="progress-label">
+                                    Seu progresso
+                                </span>
+
+                                <span
+                                    class="progress-value"
+                                    data-progress-subject="matematica"
+                                >
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    data-progress-bar="matematica"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="review-button"
+                            type="button"
+                            onclick="window.location.href='revisao.html?materia=matematica'"
+                        >
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            Começar revisão
+
+                        </button>
+
+                    </article>
+
+
+                    <!-- =================================================
+                         NATUREZA
+                         ================================================= -->
+
+                    <article
+                        class="subject-card"
+                        data-subject="natureza"
+                    >
+
+                        <div class="subject-card-header">
+
+                            <div class="subject-card-title">
+
+                                <div class="subject-card-icon">
+
+                                    <i class="fa-solid fa-flask"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Ciências da Natureza
+                                    </h2>
+
+                                    <span class="subject-card-subtitle">
+                                        Química, Biologia e Física
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <span class="subject-card-count">
+                                17 conteúdos
+                            </span>
+
+                        </div>
+
+
+                        <ul class="topic-list">
+
+                            <li class="topic-item"
+                                data-topic="qui-tabela">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Tabela periódica
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-raio">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Raio atômico
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-eletronegatividade">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Eletronegatividade
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-eletropositividade">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Eletropositividade
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-ionizacao">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Energia de ionização
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-carbono">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Classificação do carbono
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-cadeias">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Cadeias carbônicas
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-hibridizacao">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Hibridização
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-formula">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Fórmula molecular
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-funcoes">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Funções orgânicas
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="qui-hidrocarbonetos">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Nomenclatura de hidrocarbonetos
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="bio-citologia">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Citologia
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="bio-epitelial">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Tecido epitelial
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="fis-circuitos">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Circuitos elétricos
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="fis-geradores">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Geradores e receptores elétricos
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                        </ul>
+
+
+                        <div class="subject-progress">
+
+                            <div class="progress-info">
+
+                                <span class="progress-label">
+                                    Seu progresso
+                                </span>
+
+                                <span
+                                    class="progress-value"
+                                    data-progress-subject="natureza"
+                                >
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    data-progress-bar="natureza"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="review-button"
+                            type="button"
+                            onclick="window.location.href='revisao.html?materia=natureza'"
+                        >
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            Começar revisão
+
+                        </button>
+
+                    </article>
+
+
+                    <!-- =================================================
+                         HUMANAS
+                         ================================================= -->
+
+                    <article
+                        class="subject-card"
+                        data-subject="humanas"
+                    >
+
+                        <div class="subject-card-header">
+
+                            <div class="subject-card-title">
+
+                                <div class="subject-card-icon">
+
+                                    <i class="fa-solid fa-earth-americas"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Ciências Humanas
+                                    </h2>
+
+                                    <span class="subject-card-subtitle">
+                                        História e Geografia
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <span class="subject-card-count">
+                                3 conteúdos
+                            </span>
+
+                        </div>
+
+
+                        <ul class="topic-list">
+
+                            <li class="topic-item"
+                                data-topic="hum-liberdade">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Liberdade, Igualdade e Sustentabilidade
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="hum-ditadura">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Direitos, Economia e Cultura nos tempos da Ditadura
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+
+                            <li class="topic-item"
+                                data-topic="hum-hidrografia">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Hidrografia
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+                        </ul>
+
+
+                        <div class="subject-progress">
+
+                            <div class="progress-info">
+
+                                <span class="progress-label">
+                                    Seu progresso
+                                </span>
+
+                                <span
+                                    class="progress-value"
+                                    data-progress-subject="humanas"
+                                >
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    data-progress-bar="humanas"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="review-button"
+                            type="button"
+                            onclick="window.location.href='revisao.html?materia=humanas'"
+                        >
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            Começar revisão
+
+                        </button>
+
+                    </article>
+
+
+                    <!-- =================================================
+                         LINGUAGENS
+                         ================================================= -->
+
+                    <article
+                        class="subject-card"
+                        data-subject="linguagens"
+                    >
+
+                        <div class="subject-card-header">
+
+                            <div class="subject-card-title">
+
+                                <div class="subject-card-icon">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Linguagens
+                                    </h2>
+
+                                    <span class="subject-card-subtitle">
+                                        Produção textual
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <span class="subject-card-count">
+                                1 conteúdo
+                            </span>
+
+                        </div>
+
+
+                        <ul class="topic-list">
+
+                            <li class="topic-item"
+                                data-topic="lin-redacao">
+
+                                <span class="topic-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <span class="topic-name">
+                                    Redação dissertativa-argumentativa
+                                </span>
+
+                                <button
+                                    class="topic-action"
+                                    type="button"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+
+                            </li>
+
+                        </ul>
+
+
+                        <div class="subject-progress">
+
+                            <div class="progress-info">
+
+                                <span class="progress-label">
+                                    Seu progresso
+                                </span>
+
+                                <span
+                                    class="progress-value"
+                                    data-progress-subject="linguagens"
+                                >
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    data-progress-bar="linguagens"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="review-button"
+                            type="button"
+                            onclick="window.location.href='revisao.html?materia=linguagens'"
+                        >
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            Começar revisão
+
+                        </button>
+
+                    </article>
+
+                </section>
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER
+                 ================================================= -->
+
+            <footer class="footer">
+
+                <span>
+                    Revisão 3º Ano A
+                </span>
+
+                <span>
+                    Preparação para as avaliações
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="progresso.js"></script>
+
+    <script src="questoes.js"></script>
+
+    <script src="app.js"></script>
+
+
+    <!-- =====================================================
+         SCRIPT DA PÁGINA
+         ===================================================== -->
+
+    <script>
+
+        "use strict";
+
+
+        /* =================================================
+           FILTRO DE MATÉRIAS
+           ================================================= */
+
+        const filterButtons =
+            document.querySelectorAll(
+                "#subjectFilter button"
+            );
+
+
+        const subjectCards =
+            document.querySelectorAll(
+                ".subject-card"
+            );
+
+
+        filterButtons.forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const filtro =
+                            button.dataset.filter;
+
+
+                        /*
+                         * Atualiza botão ativo
+                         */
+
+                        filterButtons.forEach(
+                            (item) => {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        /*
+                         * Filtra os cards
+                         */
+
+                        subjectCards.forEach(
+                            (card) => {
+
+                                const materia =
+                                    card.dataset.subject;
+
+
+                                if (
+                                    filtro === "all" ||
+                                    materia === filtro
+                                ) {
+
+                                    card.style.display =
+                                        "";
+
+                                } else {
+
+                                    card.style.display =
+                                        "none";
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           TÓPICOS
+           ================================================= */
+
+        const topicItems =
+            document.querySelectorAll(
+                ".topic-item"
+            );
+
+
+        /*
+         * Como o sistema de progresso principal
+         * ainda será ampliado nas próximas páginas,
+         * guardamos aqui os tópicos estudados.
+         */
+
+        const TOPICS_STORAGE =
+            "revisao-3a-topicos";
+
+
+        function carregarTopicosConcluidos() {
+
+            try {
+
+                const dados =
+                    localStorage.getItem(
+                        TOPICS_STORAGE
+                    );
+
+
+                if (!dados) {
+
+                    return [];
+
+                }
+
+
+                const parsed =
+                    JSON.parse(dados);
+
+
+                return Array.isArray(parsed)
+                    ? parsed
+                    : [];
+
+            } catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+        function salvarTopicosConcluidos(
+            topicos
+        ) {
+
+            localStorage.setItem(
+                TOPICS_STORAGE,
+                JSON.stringify(topicos)
+            );
+
+        }
+
+
+        function atualizarVisualTopico(
+            item
+        ) {
+
+            const id =
+                item.dataset.topic;
+
+
+            const concluidos =
+                carregarTopicosConcluidos();
+
+
+            const concluido =
+                concluidos.includes(id);
+
+
+            item.classList.toggle(
+                "completed",
+                concluido
+            );
+
+        }
+
+
+        function atualizarProgressos() {
+
+            const concluidos =
+                carregarTopicosConcluidos();
+
+
+            subjectCards.forEach(
+                (card) => {
+
+                    const materia =
+                        card.dataset.subject;
+
+
+                    const topicos =
+                        card.querySelectorAll(
+                            ".topic-item"
+                        );
+
+
+                    const total =
+                        topicos.length;
+
+
+                    let completos = 0;
+
+
+                    topicos.forEach(
+                        (topico) => {
+
+                            if (
+                                concluidos.includes(
+                                    topico.dataset.topic
+                                )
+                            ) {
+
+                                completos++;
+
+                            }
+
+                        }
+                    );
+
+
+                    const porcentagem =
+                        total > 0
+                            ? Math.round(
+                                (completos / total) * 100
+                            )
+                            : 0;
+
+
+                    const valor =
+                        card.querySelector(
+                            "[data-progress-subject]"
+                        );
+
+
+                    const barra =
+                        card.querySelector(
+                            "[data-progress-bar]"
+                        );
+
+
+                    if (valor) {
+
+                        valor.textContent =
+                            `${porcentagem}%`;
+
+                    }
+
+
+                    if (barra) {
+
+                        barra.style.width =
+                            `${porcentagem}%`;
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        function alternarTopico(
+            item
+        ) {
+
+            const id =
+                item.dataset.topic;
+
+
+            let concluidos =
+                carregarTopicosConcluidos();
+
+
+            if (
+                concluidos.includes(id)
+            ) {
+
+                concluidos =
+                    concluidos.filter(
+                        (itemId) =>
+                            itemId !== id
+                    );
+
+            } else {
+
+                concluidos.push(id);
+
+            }
+
+
+            salvarTopicosConcluidos(
+                concluidos
+            );
+
+
+            atualizarVisualTopico(
+                item
+            );
+
+
+            atualizarProgressos();
+
+        }
+
+
+        topicItems.forEach(
+            (item) => {
+
+                const action =
+                    item.querySelector(
+                        ".topic-action"
+                    );
+
+
+                if (action) {
+
+                    action.addEventListener(
+                        "click",
+                        (event) => {
+
+                            event.preventDefault();
+
+                            event.stopPropagation();
+
+                            alternarTopico(
+                                item
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                item.addEventListener(
+                    "click",
+                    (event) => {
+
+                        if (
+                            event.target.closest(
+                                ".topic-action"
+                            )
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        alternarTopico(
+                            item
+                        );
+
+                    }
+                );
+
+
+                atualizarVisualTopico(
+                    item
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           INICIALIZAÇÃO
+           ================================================= */
+
+        atualizarProgressos();
+
+    </script>
+
+</body>
+
+</html>

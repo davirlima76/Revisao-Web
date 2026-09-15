@@ -1,0 +1,160 @@
+/* =========================================================
+   REVISÃO 3º ANO A
+   STYLE.CSS
+   LAYOUT PRINCIPAL
+   ========================================================= */
+
+
+/* =========================================================
+   APLICAÇÃO
+   ========================================================= */
+
+.app {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.main-content {
+    width: calc(100% - var(--sidebar-width));
+    min-width: 0;
+    min-height: 100vh;
+
+    margin-left: var(--sidebar-width);
+
+    padding: 0 38px 40px;
+
+    overflow-x: hidden;
+
+    background: var(--color-background);
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    width: 100%;
+
+    max-width: var(--content-max-width);
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    width: 100%;
+
+    max-width: var(--content-max-width);
+
+    margin: 28px auto 0;
+}
+
+
+/* =========================================================
+   SEÇÕES
+   ========================================================= */
+
+.section {
+    width: 100%;
+
+    max-width: var(--content-max-width);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.quick-grid,
+.schedule-grid,
+.subjects-overview {
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+.quick-card,
+.schedule-card,
+.subject-mini {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   SEGURANÇA DE LAYOUT
+   ========================================================= */
+
+.hero *,
+.section * {
+    max-width: 100%;
+}
+
+
+.hero-content,
+.quick-info,
+.schedule-info,
+.subject-mini > div:last-child {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 0 20px 30px;
+    }
+
+
+    .topbar {
+        min-height: 70px;
+    }
+
+
+    .hero {
+        margin-top: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    .main-content {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+
+    .hero {
+        margin-top: 14px;
+    }
+
+}
