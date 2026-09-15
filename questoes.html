@@ -1,0 +1,2632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Questões | Revisão 3º Ano A</title>
+
+
+    <!-- =====================================================
+         FONTES
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../css/reset.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/components.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+
+    <!-- =====================================================
+         ESTILO DA PÁGINA
+         ===================================================== -->
+
+    <style>
+
+        /* =================================================
+           CONTAINER
+           ================================================= */
+
+        .questions-container {
+
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding-top: 28px;
+            padding-bottom: 50px;
+
+        }
+
+
+        /* =================================================
+           CABEÇALHO
+           ================================================= */
+
+        .questions-header {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .back-link {
+
+            display: inline-flex;
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 15px;
+
+            color: var(--color-text-muted);
+
+            font-size: 12px;
+            font-weight: 600;
+
+            text-decoration: none;
+
+        }
+
+
+        .back-link:hover {
+
+            color: var(--color-primary);
+
+        }
+
+
+        .questions-label {
+
+            display: inline-flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 9px;
+
+            color: var(--color-primary);
+
+            font-size: 12px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.08em;
+
+        }
+
+
+        .questions-title {
+
+            margin: 0 0 8px;
+
+            color: var(--color-text);
+
+            font-size: clamp(28px, 4vw, 42px);
+
+            font-weight: 800;
+
+            line-height: 1.15;
+
+        }
+
+
+        .questions-description {
+
+            max-width: 700px;
+
+            color: var(--color-text-muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =================================================
+           FILTROS
+           ================================================= */
+
+        .question-filters {
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+
+            overflow-x: auto;
+
+            padding-bottom: 5px;
+
+        }
+
+
+        .question-filter {
+
+            flex-shrink: 0;
+
+            padding: 9px 14px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: 999px;
+
+            background: var(--color-surface);
+
+            color: var(--color-text-muted);
+
+            font-family: inherit;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .question-filter:hover {
+
+            border-color: var(--color-primary);
+
+            color: var(--color-primary);
+
+        }
+
+
+        .question-filter.active {
+
+            border-color: var(--color-primary);
+
+            background: var(--color-primary);
+
+            color: #ffffff;
+
+        }
+
+
+        /* =================================================
+           STATUS
+           ================================================= */
+
+        .quiz-status {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .status-card {
+
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 17px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-lg);
+
+            background: var(--color-surface);
+
+        }
+
+
+        .status-icon {
+
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 11px;
+
+            background: var(--color-primary-light);
+
+            color: var(--color-primary);
+
+        }
+
+
+        .status-info span {
+
+            display: block;
+
+            margin-bottom: 3px;
+
+            color: var(--color-text-muted);
+
+            font-size: 10px;
+            font-weight: 600;
+
+        }
+
+
+        .status-info strong {
+
+            color: var(--color-text);
+
+            font-size: 17px;
+            font-weight: 800;
+
+        }
+
+
+        /* =================================================
+           QUESTÃO
+           ================================================= */
+
+        .question-card {
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-xl);
+
+            background: var(--color-surface);
+
+            box-shadow: var(--shadow-md);
+
+            overflow: hidden;
+
+        }
+
+
+        .question-card-header {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 22px 28px;
+
+            border-bottom: 1px solid var(--color-border);
+
+        }
+
+
+        .question-number {
+
+            color: var(--color-primary);
+
+            font-size: 12px;
+            font-weight: 800;
+
+        }
+
+
+        .question-subject {
+
+            padding: 6px 10px;
+
+            border-radius: 999px;
+
+            background: var(--color-primary-light);
+
+            color: var(--color-primary);
+
+            font-size: 10px;
+            font-weight: 800;
+
+        }
+
+
+        .question-content {
+
+            padding: 30px;
+
+        }
+
+
+        .question-text {
+
+            margin-bottom: 25px;
+
+            color: var(--color-text);
+
+            font-size: 17px;
+            font-weight: 700;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =================================================
+           ALTERNATIVAS
+           ================================================= */
+
+        .alternatives {
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+
+        }
+
+
+        .alternative {
+
+            position: relative;
+
+            display: flex;
+            align-items: flex-start;
+
+            gap: 13px;
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-md);
+
+            background: var(--color-surface);
+
+            color: var(--color-text);
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                border-color var(--transition-fast),
+                background var(--transition-fast),
+                transform var(--transition-fast);
+
+        }
+
+
+        .alternative:hover {
+
+            border-color: var(--color-primary);
+
+            background: var(--color-primary-light);
+
+            transform: translateX(2px);
+
+        }
+
+
+        .alternative-letter {
+
+            width: 29px;
+            height: 29px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: 50%;
+
+            color: var(--color-text-muted);
+
+            font-size: 11px;
+            font-weight: 800;
+
+        }
+
+
+        .alternative-text {
+
+            padding-top: 5px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .alternative.selected {
+
+            border-color: var(--color-primary);
+
+            background: var(--color-primary-light);
+
+        }
+
+
+        .alternative.selected
+        .alternative-letter {
+
+            border-color: var(--color-primary);
+
+            background: var(--color-primary);
+
+            color: #ffffff;
+
+        }
+
+
+        .alternative.correct {
+
+            border-color: var(--color-success);
+
+            background: var(--color-success-bg);
+
+        }
+
+
+        .alternative.correct
+        .alternative-letter {
+
+            border-color: var(--color-success);
+
+            background: var(--color-success);
+
+            color: #ffffff;
+
+        }
+
+
+        .alternative.incorrect {
+
+            border-color: var(--color-danger);
+
+            background: var(--color-danger-bg);
+
+        }
+
+
+        .alternative.incorrect
+        .alternative-letter {
+
+            border-color: var(--color-danger);
+
+            background: var(--color-danger);
+
+            color: #ffffff;
+
+        }
+
+
+        /* =================================================
+           FEEDBACK
+           ================================================= */
+
+        .question-feedback {
+
+            display: none;
+
+            margin-top: 22px;
+
+            padding: 18px;
+
+            border-radius: var(--radius-md);
+
+        }
+
+
+        .question-feedback.show {
+
+            display: block;
+
+        }
+
+
+        .question-feedback.correct {
+
+            background: var(--color-success-bg);
+
+            color: var(--color-success);
+
+        }
+
+
+        .question-feedback.incorrect {
+
+            background: var(--color-danger-bg);
+
+            color: var(--color-danger);
+
+        }
+
+
+        .feedback-title {
+
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 6px;
+
+            font-size: 13px;
+            font-weight: 800;
+
+        }
+
+
+        .feedback-text {
+
+            color: var(--color-text-muted);
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =================================================
+           AÇÕES
+           ================================================= */
+
+        .question-actions {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 28px;
+
+            padding-top: 22px;
+
+            border-top: 1px solid var(--color-border);
+
+        }
+
+
+        .question-button {
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            border-radius: var(--radius-md);
+
+            font-family: inherit;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .question-button.primary {
+
+            border: 0;
+
+            background: var(--color-primary);
+
+            color: #ffffff;
+
+        }
+
+
+        .question-button.primary:hover {
+
+            background: var(--color-primary-dark);
+
+        }
+
+
+        .question-button.secondary {
+
+            border: 1px solid var(--color-border);
+
+            background: var(--color-background);
+
+            color: var(--color-text-muted);
+
+        }
+
+
+        .question-button.secondary:hover {
+
+            border-color: var(--color-primary);
+
+            color: var(--color-primary);
+
+        }
+
+
+        .question-button:disabled {
+
+            opacity: 0.5;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* =================================================
+           RESULTADO FINAL
+           ================================================= */
+
+        .quiz-result {
+
+            display: none;
+
+            padding: 35px;
+
+            border: 1px solid var(--color-border);
+
+            border-radius: var(--radius-xl);
+
+            background: var(--color-surface);
+
+            text-align: center;
+
+            box-shadow: var(--shadow-md);
+
+        }
+
+
+        .quiz-result.show {
+
+            display: block;
+
+        }
+
+
+        .result-icon {
+
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            background: var(--color-primary-light);
+
+            color: var(--color-primary);
+
+            font-size: 25px;
+
+        }
+
+
+        .result-title {
+
+            margin-bottom: 8px;
+
+            color: var(--color-text);
+
+            font-size: 24px;
+            font-weight: 800;
+
+        }
+
+
+        .result-score {
+
+            margin-bottom: 10px;
+
+            color: var(--color-primary);
+
+            font-size: 38px;
+            font-weight: 800;
+
+        }
+
+
+        .result-description {
+
+            margin-bottom: 25px;
+
+            color: var(--color-text-muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .result-actions {
+
+            display: flex;
+            justify-content: center;
+
+            gap: 10px;
+
+        }
+
+
+        /* =================================================
+           RESPONSIVIDADE
+           ================================================= */
+
+        @media (max-width: 800px) {
+
+            .questions-container {
+
+                padding-top: 20px;
+
+            }
+
+
+            .quiz-status {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .question-content {
+
+                padding: 20px;
+
+            }
+
+
+            .question-card-header {
+
+                padding: 18px 20px;
+
+            }
+
+
+            .question-actions {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+
+            .question-button {
+
+                width: 100%;
+
+            }
+
+
+            .result-actions {
+
+                flex-direction: column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+
+                <div class="logo-text">
+
+                    <strong>
+                        Revisão
+                    </strong>
+
+                    <span>
+                        3º Ano A
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <span class="nav-title">
+                    MENU
+                </span>
+
+
+                <a
+                    href="../index.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Início
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="materias.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-book"></i>
+
+                    <span>
+                        Matérias
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="questoes.html"
+                    class="nav-item active"
+                >
+
+                    <i class="fa-solid fa-circle-question"></i>
+
+                    <span>
+                        Questões
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="desempenho.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Desempenho
+                    </span>
+
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-exam">
+
+                <div class="exam-icon">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Semana de provas
+                    </strong>
+
+                    <span>
+                        18 a 21 de agosto
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-footer">
+
+                <strong>
+                    3º ANO A
+                </strong>
+
+                <span>
+                    Preparação para as avaliações
+                </span>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN
+             ================================================= -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 TOPBAR
+                 ================================================= -->
+
+            <header class="topbar">
+
+                <div class="topbar-title">
+
+                    <button
+                        class="icon-button mobile-menu"
+                        id="menuToggle"
+                        aria-label="Abrir menu"
+                    >
+
+                        <i class="fa-solid fa-bars"></i>
+
+                    </button>
+
+
+                    <div>
+
+                        <span>
+                            REVISÃO ESCOLAR
+                        </span>
+
+                        <strong>
+                            Hora de praticar
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <button
+                        class="icon-button"
+                        id="themeToggle"
+                        aria-label="Ativar modo escuro"
+                    >
+
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CONTAINER
+                 ================================================= -->
+
+            <div class="questions-container">
+
+
+                <!-- =================================================
+                     CABEÇALHO
+                     ================================================= -->
+
+                <header class="questions-header">
+
+                    <a
+                        href="materias.html"
+                        class="back-link"
+                    >
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Voltar para matérias
+
+                    </a>
+
+
+                    <div class="questions-label">
+
+                        <i class="fa-solid fa-circle-question"></i>
+
+                        Treino
+
+                    </div>
+
+
+                    <h1 class="questions-title">
+
+                        Questões
+
+                    </h1>
+
+
+                    <p class="questions-description">
+
+                        Teste seus conhecimentos,
+                        descubra seus erros e acompanhe
+                        sua evolução durante a revisão.
+
+                    </p>
+
+                </header>
+
+
+                <!-- =================================================
+                     FILTROS
+                     ================================================= -->
+
+                <div class="question-filters">
+
+                    <button
+                        class="question-filter active"
+                        data-filter="todas"
+                    >
+                        Todas
+                    </button>
+
+
+                    <button
+                        class="question-filter"
+                        data-filter="matematica"
+                    >
+                        Matemática
+                    </button>
+
+
+                    <button
+                        class="question-filter"
+                        data-filter="natureza"
+                    >
+                        Natureza
+                    </button>
+
+
+                    <button
+                        class="question-filter"
+                        data-filter="humanas"
+                    >
+                        Humanas
+                    </button>
+
+
+                    <button
+                        class="question-filter"
+                        data-filter="linguagens"
+                    >
+                        Linguagens
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     STATUS
+                     ================================================= -->
+
+                <div class="quiz-status">
+
+
+                    <div class="status-card">
+
+                        <div class="status-icon">
+
+                            <i class="fa-solid fa-list-check"></i>
+
+                        </div>
+
+
+                        <div class="status-info">
+
+                            <span>
+                                Questão
+                            </span>
+
+                            <strong id="currentQuestion">
+                                1/1
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-card">
+
+                        <div class="status-icon">
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </div>
+
+
+                        <div class="status-info">
+
+                            <span>
+                                Acertos
+                            </span>
+
+                            <strong id="correctAnswers">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-card">
+
+                        <div class="status-icon">
+
+                            <i class="fa-solid fa-star"></i>
+
+                        </div>
+
+
+                        <div class="status-info">
+
+                            <span>
+                                Pontuação
+                            </span>
+
+                            <strong id="score">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ÁREA DO QUIZ
+                     ================================================= -->
+
+                <div id="quizArea">
+
+
+                    <article class="question-card">
+
+
+                        <header class="question-card-header">
+
+                            <span
+                                class="question-number"
+                                id="questionNumber"
+                            >
+                                Questão 01
+                            </span>
+
+
+                            <span
+                                class="question-subject"
+                                id="questionSubject"
+                            >
+                                Matemática
+                            </span>
+
+                        </header>
+
+
+                        <div class="question-content">
+
+
+                            <div
+                                class="question-text"
+                                id="questionText"
+                            >
+                                Carregando questão...
+                            </div>
+
+
+                            <div
+                                class="alternatives"
+                                id="alternatives"
+                            ></div>
+
+
+                            <!-- FEEDBACK -->
+
+                            <div
+                                class="question-feedback"
+                                id="questionFeedback"
+                            >
+
+                                <div
+                                    class="feedback-title"
+                                    id="feedbackTitle"
+                                ></div>
+
+
+                                <div
+                                    class="feedback-text"
+                                    id="feedbackText"
+                                ></div>
+
+                            </div>
+
+
+                            <!-- AÇÕES -->
+
+                            <div class="question-actions">
+
+                                <button
+                                    type="button"
+                                    class="question-button secondary"
+                                    id="skipQuestion"
+                                >
+
+                                    Pular
+
+                                    <i class="fa-solid fa-forward"></i>
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="question-button primary"
+                                    id="checkAnswer"
+                                >
+
+                                    Conferir resposta
+
+                                    <i class="fa-solid fa-check"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- =================================================
+                     RESULTADO
+                     ================================================= -->
+
+                <section
+                    class="quiz-result"
+                    id="quizResult"
+                >
+
+                    <div class="result-icon">
+
+                        <i class="fa-solid fa-trophy"></i>
+
+                    </div>
+
+
+                    <h2 class="result-title">
+
+                        Revisão concluída!
+
+                    </h2>
+
+
+                    <div
+                        class="result-score"
+                        id="resultScore"
+                    >
+                        0%
+                    </div>
+
+
+                    <p
+                        class="result-description"
+                        id="resultDescription"
+                    >
+                        Continue praticando para melhorar
+                        seu desempenho.
+
+                    </p>
+
+
+                    <div class="result-actions">
+
+                        <button
+                            type="button"
+                            class="question-button secondary"
+                            id="restartQuiz"
+                        >
+
+                            <i class="fa-solid fa-rotate-right"></i>
+
+                            Refazer
+
+                        </button>
+
+
+                        <a
+                            href="desempenho.html"
+                            class="question-button primary"
+                        >
+
+                            Ver desempenho
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER
+                 ================================================= -->
+
+            <footer class="footer">
+
+                <span>
+                    Revisão 3º Ano A
+                </span>
+
+                <span>
+                    Pratique. Aprenda. Evolua.
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="../js/progresso.js"></script>
+
+    <script src="../js/questoes.js"></script>
+
+    <script src="../js/app.js"></script>
+
+
+    <!-- =====================================================
+         CONTROLE DA PÁGINA
+         ===================================================== -->
+
+    <script>
+
+        "use strict";
+
+
+        /* =================================================
+           ELEMENTOS
+           ================================================= */
+
+        const questionNumber =
+            document.getElementById(
+                "questionNumber"
+            );
+
+
+        const questionSubject =
+            document.getElementById(
+                "questionSubject"
+            );
+
+
+        const questionText =
+            document.getElementById(
+                "questionText"
+            );
+
+
+        const alternatives =
+            document.getElementById(
+                "alternatives"
+            );
+
+
+        const questionFeedback =
+            document.getElementById(
+                "questionFeedback"
+            );
+
+
+        const feedbackTitle =
+            document.getElementById(
+                "feedbackTitle"
+            );
+
+
+        const feedbackText =
+            document.getElementById(
+                "feedbackText"
+            );
+
+
+        const currentQuestion =
+            document.getElementById(
+                "currentQuestion"
+            );
+
+
+        const correctAnswers =
+            document.getElementById(
+                "correctAnswers"
+            );
+
+
+        const scoreElement =
+            document.getElementById(
+                "score"
+            );
+
+
+        const checkAnswer =
+            document.getElementById(
+                "checkAnswer"
+            );
+
+
+        const skipQuestion =
+            document.getElementById(
+                "skipQuestion"
+            );
+
+
+        const quizArea =
+            document.getElementById(
+                "quizArea"
+            );
+
+
+        const quizResult =
+            document.getElementById(
+                "quizResult"
+            );
+
+
+        const resultScore =
+            document.getElementById(
+                "resultScore"
+            );
+
+
+        const resultDescription =
+            document.getElementById(
+                "resultDescription"
+            );
+
+
+        const restartQuiz =
+            document.getElementById(
+                "restartQuiz"
+            );
+
+
+        /* =================================================
+           DADOS
+           ================================================= */
+
+        let bancoAtual = [];
+
+        let indiceQuestao = 0;
+
+        let respostaSelecionada = null;
+
+        let respondeu = false;
+
+        let acertos = 0;
+
+        let pontuacao = 0;
+
+
+        /* =================================================
+           BANCO DE QUESTÕES
+           ================================================= */
+
+        /*
+         * As questões estão aqui para que a página
+         * funcione mesmo antes de adicionarmos
+         * um banco maior no questoes.js.
+         */
+
+        const questoesPagina = [
+
+            {
+                materia: "matematica",
+
+                tema: "Distância entre pontos",
+
+                pergunta:
+                    "Qual é a distância entre os pontos A(0, 0) e B(3, 4)?",
+
+                alternativas: [
+                    "3",
+                    "4",
+                    "5",
+                    "7",
+                    "12"
+                ],
+
+                correta: 2,
+
+                explicacao:
+                    "Aplicando a fórmula da distância: d = √[(3 - 0)² + (4 - 0)²] = √25 = 5."
+            },
+
+
+            {
+                materia: "matematica",
+
+                tema: "Ponto médio",
+
+                pergunta:
+                    "Qual é o ponto médio do segmento que liga A(2, 4) e B(6, 8)?",
+
+                alternativas: [
+                    "(2, 4)",
+                    "(4, 6)",
+                    "(6, 8)",
+                    "(8, 12)",
+                    "(3, 5)"
+                ],
+
+                correta: 1,
+
+                explicacao:
+                    "O ponto médio é M = ((2 + 6)/2, (4 + 8)/2) = (4, 6)."
+            },
+
+
+            {
+                materia: "matematica",
+
+                tema: "Equação da reta",
+
+                pergunta:
+                    "Na equação reduzida y = 2x + 3, qual é o coeficiente angular?",
+
+                alternativas: [
+                    "2",
+                    "3",
+                    "-2",
+                    "-3",
+                    "5"
+                ],
+
+                correta: 0,
+
+                explicacao:
+                    "Na forma y = ax + b, o número que acompanha x representa o coeficiente angular. Portanto, a = 2."
+            },
+
+
+            {
+                materia: "natureza",
+
+                tema: "Química",
+
+                pergunta:
+                    "Qual propriedade periódica representa a tendência de um átomo atrair os elétrons de uma ligação química?",
+
+                alternativas: [
+                    "Raio atômico",
+                    "Eletronegatividade",
+                    "Massa atômica",
+                    "Densidade",
+                    "Ponto de fusão"
+                ],
+
+                correta: 1,
+
+                explicacao:
+                    "A eletronegatividade representa a tendência de um átomo atrair os elétrons envolvidos em uma ligação."
+            },
+
+
+            {
+                materia: "natureza",
+
+                tema: "Biologia",
+
+                pergunta:
+                    "Qual é uma das principais funções do tecido epitelial?",
+
+                alternativas: [
+                    "Revestimento e proteção",
+                    "Produção de energia elétrica",
+                    "Transporte de sangue",
+                    "Formação exclusiva dos ossos",
+                    "Produção de movimentos"
+                ],
+
+                correta: 0,
+
+                explicacao:
+                    "O tecido epitelial atua principalmente no revestimento e proteção das superfícies do organismo."
+            },
+
+
+            {
+                materia: "natureza",
+
+                tema: "Física",
+
+                pergunta:
+                    "Em um circuito elétrico, qual componente é responsável por fornecer energia elétrica ao circuito?",
+
+                alternativas: [
+                    "Receptor",
+                    "Gerador",
+                    "Interruptor",
+                    "Resistor",
+                    "Fio"
+                ],
+
+                correta: 1,
+
+                explicacao:
+                    "O gerador fornece energia elétrica ao circuito, enquanto o receptor recebe e transforma essa energia."
+            },
+
+
+            {
+                materia: "humanas",
+
+                tema: "História",
+
+                pergunta:
+                    "No estudo dos tempos da Ditadura, quais dimensões podem ser analisadas em conjunto?",
+
+                alternativas: [
+                    "Somente economia",
+                    "Somente cultura",
+                    "Política, economia, cultura e direitos",
+                    "Somente geografia",
+                    "Somente tecnologia"
+                ],
+
+                correta: 2,
+
+                explicacao:
+                    "O conteúdo aborda direitos, economia e cultura, relacionando diferentes dimensões políticas e sociais do período."
+            },
+
+
+            {
+                materia: "humanas",
+
+                tema: "Geografia",
+
+                pergunta:
+                    "O que é uma bacia hidrográfica?",
+
+                alternativas: [
+                    "Uma área drenada por um sistema de rios",
+                    "Somente o rio principal",
+                    "Uma área sem presença de água",
+                    "Apenas um lago",
+                    "Uma região exclusivamente marítima"
+                ],
+
+                correta: 0,
+
+                explicacao:
+                    "Uma bacia hidrográfica corresponde à área drenada por um sistema de rios, incluindo o rio principal e seus afluentes."
+            },
+
+
+            {
+                materia: "linguagens",
+
+                tema: "Redação",
+
+                pergunta:
+                    "Qual estrutura representa uma organização básica da redação dissertativa-argumentativa?",
+
+                alternativas: [
+                    "Título + diálogo + poema",
+                    "Tese + argumentação + conclusão",
+                    "Pergunta + resposta + desenho",
+                    "Introdução + lista + tabela",
+                    "Narrativa + personagens + conflito"
+                ],
+
+                correta: 1,
+
+                explicacao:
+                    "A redação dissertativa-argumentativa apresenta uma tese, desenvolve argumentos e realiza uma conclusão."
+            }
+
+        ];
+
+
+        /* =================================================
+           OBTER NOME DA MATÉRIA
+           ================================================= */
+
+        function nomeMateria(
+            materia
+        ) {
+
+            const nomes = {
+
+                matematica:
+                    "Matemática",
+
+                natureza:
+                    "Ciências da Natureza",
+
+                humanas:
+                    "Ciências Humanas",
+
+                linguagens:
+                    "Linguagens"
+
+            };
+
+
+            return nomes[materia] ||
+                materia;
+
+        }
+
+
+        /* =================================================
+           CARREGAR QUESTÕES
+           ================================================= */
+
+        function carregarQuestoes(
+            filtro = "todas"
+        ) {
+
+            if (
+                filtro === "todas"
+            ) {
+
+                bancoAtual =
+                    [...questoesPagina];
+
+            } else {
+
+                bancoAtual =
+                    questoesPagina.filter(
+                        (questao) =>
+                            questao.materia ===
+                            filtro
+                    );
+
+            }
+
+
+            indiceQuestao = 0;
+
+            respostaSelecionada = null;
+
+            respondeu = false;
+
+            acertos = 0;
+
+            pontuacao = 0;
+
+
+            quizResult.classList.remove(
+                "show"
+            );
+
+
+            quizArea.style.display =
+                "block";
+
+
+            atualizarStatus();
+
+            renderizarQuestao();
+
+        }
+
+
+        /* =================================================
+           RENDERIZAR QUESTÃO
+           ================================================= */
+
+        function renderizarQuestao() {
+
+            if (
+                bancoAtual.length === 0
+            ) {
+
+                questionText.textContent =
+                    "Nenhuma questão encontrada.";
+
+                alternatives.innerHTML =
+                    "";
+
+                return;
+
+            }
+
+
+            const questao =
+                bancoAtual[
+                    indiceQuestao
+                ];
+
+
+            respostaSelecionada =
+                null;
+
+            respondeu =
+                false;
+
+
+            questionNumber.textContent =
+                `Questão ${String(
+                    indiceQuestao + 1
+                ).padStart(2, "0")}`;
+
+
+            questionSubject.textContent =
+                `${nomeMateria(
+                    questao.materia
+                )} • ${questao.tema}`;
+
+
+            questionText.textContent =
+                questao.pergunta;
+
+
+            alternatives.innerHTML =
+                "";
+
+
+            const letras = [
+                "A",
+                "B",
+                "C",
+                "D",
+                "E"
+            ];
+
+
+            questao.alternativas.forEach(
+                (texto, indice) => {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.type =
+                        "button";
+
+
+                    button.className =
+                        "alternative";
+
+
+                    button.dataset.index =
+                        indice;
+
+
+                    button.innerHTML =
+                        `
+                        <span class="alternative-letter">
+                            ${letras[indice]}
+                        </span>
+
+                        <span class="alternative-text">
+                            ${texto}
+                        </span>
+                        `;
+
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            selecionarAlternativa(
+                                indice
+                            );
+
+                        }
+                    );
+
+
+                    alternatives.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+
+            questionFeedback.className =
+                "question-feedback";
+
+
+            feedbackTitle.textContent =
+                "";
+
+
+            feedbackText.textContent =
+                "";
+
+
+            checkAnswer.disabled =
+                false;
+
+
+            checkAnswer.innerHTML =
+                `
+                Conferir resposta
+                <i class="fa-solid fa-check"></i>
+                `;
+
+
+            skipQuestion.disabled =
+                false;
+
+
+            atualizarStatus();
+
+        }
+
+
+        /* =================================================
+           SELECIONAR ALTERNATIVA
+           ================================================= */
+
+        function selecionarAlternativa(
+            indice
+        ) {
+
+            if (respondeu) {
+
+                return;
+
+            }
+
+
+            respostaSelecionada =
+                indice;
+
+
+            const botoes =
+                alternatives.querySelectorAll(
+                    ".alternative"
+                );
+
+
+            botoes.forEach(
+                (button, buttonIndex) => {
+
+                    button.classList.toggle(
+                        "selected",
+                        buttonIndex === indice
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           CONFERIR RESPOSTA
+           ================================================= */
+
+        function conferirResposta() {
+
+            if (
+                respondeu
+            ) {
+
+                proximaQuestao();
+
+                return;
+
+            }
+
+
+            if (
+                respostaSelecionada === null
+            ) {
+
+                alert(
+                    "Selecione uma alternativa antes de conferir."
+                );
+
+                return;
+
+            }
+
+
+            const questao =
+                bancoAtual[
+                    indiceQuestao
+                ];
+
+
+            respondeu =
+                true;
+
+
+            const botoes =
+                alternatives.querySelectorAll(
+                    ".alternative"
+                );
+
+
+            botoes.forEach(
+                (button, indice) => {
+
+                    button.disabled =
+                        true;
+
+
+                    if (
+                        indice ===
+                        questao.correta
+                    ) {
+
+                        button.classList.add(
+                            "correct"
+                        );
+
+                    }
+
+
+                    if (
+                        indice ===
+                        respostaSelecionada &&
+                        indice !==
+                        questao.correta
+                    ) {
+
+                        button.classList.add(
+                            "incorrect"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            if (
+                respostaSelecionada ===
+                questao.correta
+            ) {
+
+                acertos++;
+
+                pontuacao += 10;
+
+
+                questionFeedback.classList.add(
+                    "show",
+                    "correct"
+                );
+
+
+                feedbackTitle.innerHTML =
+                    `
+                    <i class="fa-solid fa-circle-check"></i>
+                    Resposta correta!
+                    `;
+
+
+                feedbackText.textContent =
+                    questao.explicacao;
+
+            } else {
+
+                questionFeedback.classList.add(
+                    "show",
+                    "incorrect"
+                );
+
+
+                feedbackTitle.innerHTML =
+                    `
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    Resposta incorreta.
+                    `;
+
+
+                feedbackText.textContent =
+                    questao.explicacao;
+
+            }
+
+
+            checkAnswer.innerHTML =
+                `
+                Próxima questão
+                <i class="fa-solid fa-arrow-right"></i>
+                `;
+
+
+            atualizarStatus();
+
+        }
+
+
+        /* =================================================
+           PRÓXIMA QUESTÃO
+           ================================================= */
+
+        function proximaQuestao() {
+
+            if (
+                indiceQuestao >=
+                bancoAtual.length - 1
+            ) {
+
+                finalizarQuiz();
+
+                return;
+
+            }
+
+
+            indiceQuestao++;
+
+            renderizarQuestao();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =================================================
+           PULAR QUESTÃO
+           ================================================= */
+
+        function pularQuestao() {
+
+            if (
+                indiceQuestao >=
+                bancoAtual.length - 1
+            ) {
+
+                finalizarQuiz();
+
+                return;
+
+            }
+
+
+            indiceQuestao++;
+
+            renderizarQuestao();
+
+        }
+
+
+        /* =================================================
+           FINALIZAR
+           ================================================= */
+
+        function finalizarQuiz() {
+
+            quizArea.style.display =
+                "none";
+
+
+            quizResult.classList.add(
+                "show"
+            );
+
+
+            const total =
+                bancoAtual.length;
+
+
+            const porcentagem =
+                total > 0
+                    ? Math.round(
+                        (
+                            acertos /
+                            total
+                        ) * 100
+                    )
+                    : 0;
+
+
+            resultScore.textContent =
+                `${porcentagem}%`;
+
+
+            if (
+                porcentagem >= 80
+            ) {
+
+                resultDescription.textContent =
+                    `Excelente! Você acertou ${acertos} de ${total} questões. Continue assim!`;
+
+            } else if (
+                porcentagem >= 60
+            ) {
+
+                resultDescription.textContent =
+                    `Bom trabalho! Você acertou ${acertos} de ${total}. Revise os conteúdos que geraram dúvidas.`;
+
+            } else {
+
+                resultDescription.textContent =
+                    `Você acertou ${acertos} de ${total}. Vale a pena voltar à revisão e tentar novamente.`;
+
+            }
+
+
+            salvarResultado();
+
+        }
+
+
+        /* =================================================
+           SALVAR RESULTADO
+           ================================================= */
+
+        function salvarResultado() {
+
+            const chave =
+                "revisao-3a-resultados";
+
+
+            let resultados = [];
+
+
+            try {
+
+                const salvo =
+                    localStorage.getItem(
+                        chave
+                    );
+
+
+                if (salvo) {
+
+                    resultados =
+                        JSON.parse(salvo);
+
+                }
+
+
+                if (
+                    !Array.isArray(
+                        resultados
+                    )
+                ) {
+
+                    resultados = [];
+
+                }
+
+            } catch (error) {
+
+                resultados = [];
+
+            }
+
+
+            resultados.push({
+
+                data:
+                    new Date().toISOString(),
+
+                total:
+                    bancoAtual.length,
+
+                acertos:
+                    acertos,
+
+                pontuacao:
+                    pontuacao,
+
+                porcentagem:
+                    bancoAtual.length > 0
+                        ? Math.round(
+                            (
+                                acertos /
+                                bancoAtual.length
+                            ) * 100
+                        )
+                        : 0
+
+            });
+
+
+            /*
+             * Mantém somente os últimos
+             * 50 resultados.
+             */
+
+            resultados =
+                resultados.slice(-50);
+
+
+            localStorage.setItem(
+                chave,
+                JSON.stringify(
+                    resultados
+                )
+            );
+
+        }
+
+
+        /* =================================================
+           STATUS
+           ================================================= */
+
+        function atualizarStatus() {
+
+            const total =
+                bancoAtual.length;
+
+
+            currentQuestion.textContent =
+                total > 0
+                    ? `${indiceQuestao + 1}/${total}`
+                    : "0/0";
+
+
+            correctAnswers.textContent =
+                acertos;
+
+
+            scoreElement.textContent =
+                pontuacao;
+
+        }
+
+
+        /* =================================================
+           FILTROS
+           ================================================= */
+
+        const filtros =
+            document.querySelectorAll(
+                ".question-filter"
+            );
+
+
+        filtros.forEach(
+            (filtro) => {
+
+                filtro.addEventListener(
+                    "click",
+                    () => {
+
+                        filtros.forEach(
+                            (item) => {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        filtro.classList.add(
+                            "active"
+                        );
+
+
+                        carregarQuestoes(
+                            filtro.dataset.filter
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           BOTÕES
+           ================================================= */
+
+        checkAnswer.addEventListener(
+            "click",
+            conferirResposta
+        );
+
+
+        skipQuestion.addEventListener(
+            "click",
+            pularQuestao
+        );
+
+
+        restartQuiz.addEventListener(
+            "click",
+            () => {
+
+                const filtroAtivo =
+                    document.querySelector(
+                        ".question-filter.active"
+                    );
+
+
+                carregarQuestoes(
+                    filtroAtivo
+                        ? filtroAtivo.dataset.filter
+                        : "todas"
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           URL
+           ================================================= */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const materiaURL =
+            urlParams.get(
+                "materia"
+            );
+
+
+        /* =================================================
+           INICIALIZAÇÃO
+           ================================================= */
+
+        if (
+            materiaURL &&
+            [
+                "matematica",
+                "natureza",
+                "humanas",
+                "linguagens"
+            ].includes(
+                materiaURL
+            )
+        ) {
+
+            const filtroInicial =
+                document.querySelector(
+                    `[data-filter="${materiaURL}"]`
+                );
+
+
+            if (filtroInicial) {
+
+                filtros.forEach(
+                    (item) => {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                filtroInicial.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            carregarQuestoes(
+                materiaURL
+            );
+
+        } else {
+
+            carregarQuestoes(
+                "todas"
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
